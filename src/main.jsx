@@ -10,9 +10,9 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 // import AOS from 'aos';
-// import AllArtCraft from './components/AllArtCraft/AllArtCraft';
+// import AvailableFoods from './components/AvailableFoods/AvailableFoods';
 // import MyArtCraft from './components/MyArtCraft/MyArtCraft';
-// import AddCraft from './components/AddCraft/AddCraft';
+// import AddFood from './components/AddFood/AddFood';
 // import CraftDetails from './components/CraftDetails/CraftDetails';
 // import UpdateCraft from './components/UpdateCraft/UpdateCraft';
 // import 'aos/dist/aos.css';
@@ -36,32 +36,29 @@ const router = createBrowserRouter([
         // loader: () => fetch('https://users-management-server-five.vercel.app/craft')
 
       },
+      {
+        path: '/login',
+        element: <Login></Login>,
+      },
+      {
+        path: '/register',
+        element: <Register></Register>,
+      },
       // {
-      //   path: '/login',
-      //   element: <Login></Login>,
-      // },
-      // {
-      //   path: '/register',
-      //   element: <Register></Register>,
-      // },
-      // {
-      //   path: '/allartcraft',
-      //   element: <AllArtCraft></AllArtCraft>,
+      //   path: '/AvailableFoods',
+      //   element: <AvailableFoods></AvailableFoods>,
       //   loader: () => fetch('https://users-management-server-five.vercel.app/craft')
       // },
       // {
-      //   path: '/AllSubcategoryCraft',
-      //   element: <AllSubcategoryCraft></AllSubcategoryCraft>,
-      //   loader: () => fetch('https://users-management-server-five.vercel.app/craftSubcategory')
-      // },
       // {
-      //   path: '/addcraft',
+      //   path: '/ AddFood',
       //   element: <ProtectedRoute>
-      //     <AddCraft></AddCraft>,
+      //     <AddFood></AddFood>,
       //   </ProtectedRoute>,
       // },
       // {
       //   path: '/myartcraft/:userEmail',
+      // ManageMyFoods
       //   element: <ProtectedRoute>
       //     <MyArtCraft></MyArtCraft>,
       //   </ProtectedRoute>,
@@ -69,6 +66,7 @@ const router = createBrowserRouter([
       // },
       // {
       //   path: '/CraftDetails/:id',
+      // MyFoodRequest
       //   element: <ProtectedRoute>
       //     <CraftDetails></CraftDetails>
       //   </ProtectedRoute>,

@@ -19,10 +19,10 @@ const SocialLogin = () => {
     return (
         <div className="font-roboto">
 
-            <div className="flex flex-col items-center justify-center gap-4 mt-3">
+            <div className="flex items-center justify-center gap-4 mt-3">
                 <button
                     onClick={() => handleSocialLogin(googleLogin)}
-                    className="bg-[#c54899] hover:bg-[#322760] text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2"
+                    className="bg-transparent hover:bg-primary text-black hover:text-black border-black border-2 px-4 py-2 rounded-lg flex items-center justify-center gap-2"
                 >
                     <FaGoogle />
                     <span>Sign in with Google</span>
@@ -30,7 +30,7 @@ const SocialLogin = () => {
 
                 <button
                     onClick={() => handleSocialLogin(githubLogin)}
-                    className="bg-[#322760] hover:bg-[#c54899] text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2"
+                    className="bg-black hover:bg-primary hover:text-black hover:border-black text-accent border-2 border-accent px-4 py-2 rounded-lg flex items-center justify-center gap-2"
                 >
                     <FaGithub />
                     <span>Sign in with GitHub</span>
