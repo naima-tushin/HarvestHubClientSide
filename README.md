@@ -1,19 +1,22 @@
-Name of Website: Artycraftyness (B9 A10 Type-02 Requirements)
+Name of Website: Harvest Hub (Assignment_ID: assignment_category_0007)
 
 Vercel Live Site URL: https://users-management-server-it4wiz57o-naima-tushins-projects.vercel.app
 
-Firebase Hosting URL: https://artsandcraft-16065.web.app
+Firebase Hosting URL: https://harvest-hub-client.web.app
 
 
 Key Features and Characteristics: 
 
-- Craft Item Management: Easily add, update, and delete art & craft items through intuitive forms and interfaces, empowering users to curate their collection effortlessly.
-- User Authentication: Secure login and registration processes ensure a personalized experience, allowing users to access exclusive features like adding craft items, managing their collection, and more.
-- Responsive Design: Enjoy a seamless browsing experience across all devices, including desktops, tablets, and mobile phones.
-- Art & Craft Categories: Explore a diverse range of art & craft subcategories, each with its unique collection of items, providing users with endless inspiration and discovery.
-- Private Routes & User Permissions: Ensure data security by implementing private routes that restrict unauthorized access to sensitive features such as adding, updating, or deleting craft items. Users can only manage their own collection, enhancing privacy and control.
+- Private routes ensure that certain sections of the website are accessible only to logged-in users, safeguarding their privacy and providing a personalized experience.
+- The homepage features a captivating banner/slider, showcasing featured foods along with additional sections to provide users with a visually appealing and informative experience.
+- Relevant error messages are displayed to users during registration and login processes, ensuring smooth onboarding and minimizing user frustration.
+- The website dynamically changes the page title according to the route, providing clear context to users about their current location within the platform.
+- With a well-designed navbar and footer present on all pages (except the 404 page), users can easily navigate through different sections of the website, enhancing overall usability.
+- Implementing secure authentication systems including email/password login, Google, and GitHub sign-in, the website ensures user data safety while providing convenient access to the platform.
+- The website is built with responsiveness in mind, ensuring seamless user experience across various devices including mobile phones, tablets, and desktops.
+- With a focus on efficient data management, the website optimizes performance by utilizing server-side rendering, asynchronous data fetching, and state management techniques.
+- Toast notifications are displayed for all CRUD operations, providing users with real-time feedback and enhancing the overall user experience.
 
-Category Name: Painting and Drawing
 
 # React + Vite
 

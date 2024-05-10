@@ -9,7 +9,7 @@ const Footer = () => {
             <div className='px-4 lg:px-28 lg:py-10'>
                 <div className="flex flex-col lg:flex-row lg:justify-between">
                     <aside className="text-center lg:text-left">
-                        <img className="w-40 h-24 lg:w-48 lg:h-28 mx-auto lg:-mt-4" src={logo} alt="Harvest Hub Logo" />
+                        <img className="w-40 h-24 lg:w-44 lg:h-28 mx-auto lg:-mt-4" src={logo} alt="Harvest Hub Logo" />
                         <p className='w-full lg:w-80 mx-auto lg:ml-0 mt-4 lg:mt-0 lg:text-center lg:text-base md:text-lg'>Empowering communities, minimizing waste, and promoting sustainability through surplus food redistribution and community engagement.</p>
                     </aside>
                     <div className="mt-8 lg:mt-0 mb-8 lg:mb-0 text-center lg:text-center">
