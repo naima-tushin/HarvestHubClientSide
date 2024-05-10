@@ -7,7 +7,7 @@ import Home from './components/Home/Home';
 import { HelmetProvider } from 'react-helmet-async';
 import AuthProvider from './AuthProvider/AuthProvider';
 import Login from './components/Login/Login';
-import Register from './components/Register/Register';
+import Register from './components/SignUp/SignUp';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 // import AOS from 'aos';
 // import AvailableFoods from './components/AvailableFoods/AvailableFoods';
