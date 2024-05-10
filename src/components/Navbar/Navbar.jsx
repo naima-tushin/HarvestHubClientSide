@@ -24,7 +24,7 @@ const Navbar = () => {
             <div className="navbar bg-primary shadow-lg">
                 <div className="w-1/3">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -68,10 +68,10 @@ const Navbar = () => {
                         :
                         <div className="flex gap-2 mr-8">
                             <Link to="/login" className="form-control">
-                                <button className="btn bg-black hover:bg-secondary hover:text-black text-accent border-2 border-secondary hover:border-2 hover:border-black lg:ml-[10px] md:ml-[0px]">LOGIN</button>
+                                <button className="btn bg-black hover:bg-secondary hover:text-black text-accent border-2 border-secondary hover:border-2 hover:border-black ml-24 lg:ml-[10px] md:ml-80 px-2">LOGIN</button>
                             </Link>
                             <Link to="/register" className="form-control">
-                                <button className="btn bg-black hover:bg-secondary hover:text-black text-accent border-2 border-secondary hover:border-2 hover:border-black lg:ml-[10px] md:ml-[0px]">SIGN UP</button>
+                                <button className="btn bg-black hover:bg-secondary hover:text-black text-accent border-2 border-secondary hover:border-2 hover:border-black lg:ml-[10px] md:ml-[0px] px-2">SIGN UP</button>
                             </Link>
                         </div>
                     }
