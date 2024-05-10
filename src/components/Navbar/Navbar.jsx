@@ -8,20 +8,20 @@ const Navbar = () => {
 
     const links = <>
         <li><NavLink to="/" className={({ isActive }) =>
-            isActive ? 'bg-[#322760] text-white hover:bg-[#c54899] border-2 border-[#322760]' : 'text-[#322760] hover:bg-[#c54899] hover:text-white'}>Home</NavLink></li>
+            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-white'}>Home</NavLink></li>
         <li><NavLink to="/allartcraft" className={({ isActive }) =>
-            isActive ? 'bg-[#322760] text-white hover:bg-[#c54899] border-2 border-[#322760]' : 'text-[#322760] hover:bg-[#c54899] hover:text-white'}>Available Foods</NavLink></li>
+            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Available Foods</NavLink></li>
         <li><NavLink to="/addcraft" className={({ isActive }) =>
-            isActive ? 'bg-[#322760] text-white hover:bg-[#c54899] border-2 border-[#322760]' : 'text-[#322760] hover:bg-[#c54899] hover:text-white'}>Add Food</NavLink></li>
+            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Add Food</NavLink></li>
         <li><NavLink to={`/myartcraft/${user?.email}`} className={({ isActive }) =>
-            isActive ? 'bg-[#322760] text-white hover:bg-[#c54899] border-2 border-[#322760]' : 'text-[#322760] hover:bg-[#c54899] hover:text-white'}>Manage My Foods</NavLink></li>
+            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Manage My Foods</NavLink></li>
         <li><NavLink to={`/myartcraft/${user?.email}`} className={({ isActive }) =>
-            isActive ? 'bg-[#322760] text-white hover:bg-[#c54899] border-2 border-[#322760]' : 'text-[#322760] hover:bg-[#c54899] hover:text-white'}>My Food Request</NavLink></li>
+            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>My Food Request</NavLink></li>
     </>
 
     return (
         <div className="mx-auto">
-            <div className="navbar bg-secondary shadow-lg">
+            <div className="navbar bg-primary shadow-lg">
                 <div className="w-1/3">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -38,7 +38,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-10 lg:gap-4 lg:mr-40  lg:text-xl">
+                    <ul className="menu menu-horizontal px-10 lg:gap-4 lg:mr-24  lg:text-xl">
                         {links}
                     </ul>
                 </div>
@@ -68,10 +68,10 @@ const Navbar = () => {
                         :
                         <div className="flex gap-2 mr-8">
                             <Link to="/login" className="form-control">
-                                <button className="btn bg-[#322760] hover:bg-[#c54899] text-white lg:ml-[10px] md:ml-[0px]">LOGIN</button>
+                                <button className="btn bg-black hover:bg-secondary hover:text-black text-accent border-2 border-secondary hover:border-2 hover:border-black lg:ml-[10px] md:ml-[0px]">LOGIN</button>
                             </Link>
                             <Link to="/register" className="form-control">
-                                <button className="btn bg-[#322760] hover:bg-[#c54899] text-white lg:ml-[10px] md:ml-[0px]">REGISTER</button>
+                                <button className="btn bg-black hover:bg-secondary hover:text-black text-accent border-2 border-secondary hover:border-2 hover:border-black lg:ml-[10px] md:ml-[0px]">SIGN UP</button>
                             </Link>
                         </div>
                     }
