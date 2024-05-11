@@ -15,9 +15,9 @@ const ProtectedRoute = ({ children }) => {
     }, [spinLoading])
 
 
-    if (loading) {
-        return <Spinner></Spinner>
-    }
+    // if (loading) {
+    //     return <Spinner></Spinner>
+    // }
 
     if (!user) {
         return <Navigate to='/login' state={location?.pathname || '/'}></Navigate>

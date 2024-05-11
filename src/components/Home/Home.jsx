@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Banner from '../Banner/Banner';
 import { Helmet } from "react-helmet-async";
-// import CraftItemsSection from '../CraftItemsSection/CraftItemsSection';
+import FeaturedFoodsHome from '../FeaturedFoodsHome/FeaturedFoodsHome';
 import { useLoaderData } from 'react-router-dom';
-// import PaintingDrawingSection from '../PaintingDrawingSection/PaintingDrawingSection';
-// import Accordion from '../Accordion/Accordion';
+import TestimonialsSection from '../TestimonialsSection/TestimonialsSection';
+import ServicesSection from '../ServicesSection/ServicesSection';
 // import { Zoom } from "react-awesome-reveal";
 // import SubcategoryCraftCard from '../SubcategoryCraftCard/SubcategoryCraftCard'
 
@@ -26,18 +26,17 @@ const Home = () => {
         document.documentElement.classList.toggle("dark");
     };
 
+
     return (
         <div className={isDarkMode ? "bg-slate-300" : "bg-white"}>
-           <button onClick={toggleTheme} className='my-4 text-right pr-6 w-full font-bold text-xl'>
-  {isDarkMode ? "Light Theme 🔆" : "Dark Theme 🌙"}
-</button>
+            <button onClick={toggleTheme} className='my-4 text-right pr-6 w-full font-bold text-xl'>
+                {isDarkMode ? "Light Theme 🔆" : "Dark Theme 🌙"}
+            </button>
 
             <Banner></Banner>
-            <div className='text-center font-bold text-4xl text-[#322760] mb-5'>
-                {/* <Zoom> */}
-                    <h1>Craft <span className="text-[#c54899]">Items</span></h1>
-                {/* </Zoom> */}
-            </div>
+            <FeaturedFoodsHome></FeaturedFoodsHome>
+            <TestimonialsSection></TestimonialsSection>
+            <ServicesSection></ServicesSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3">
                 {/* {
                     craftItem.slice(0, 6).map(craftItems => (
@@ -47,7 +46,7 @@ const Home = () => {
 
             </div>
             {/* <Zoom> */}
-                <h1 className="text-center font-bold text-4xl text-[#322760] my-14">Art & Craft <span className='text-[#c54899]'>Categories</span></h1>
+            <h1 className="text-center font-bold text-4xl text-[#322760] my-14">Art & Craft <span className='text-[#c54899]'>Categories</span></h1>
             {/* </Zoom> */}
             <div className='flex flex-wrap justify-center gap-24'>
                 {/* {craftSubcategoryItems.map(craft => (

@@ -115,7 +115,7 @@ const SignUp = () => {
                     </div>
                     </div>
                     <div className="mb-6">
-                        <button className="btn w-full bg-black hover:bg-primary hover:text-black text-accent border-2 border-primary hover:border-2 hover:border-black text-base">Sign Up</button>
+                        <button className="btn w-full bg-black hover:bg-primary hover:text-black text-accent border-4 border-primary hover:border-black text-base">Sign Up</button>
                     </div>
                     <div className="text-center">
                         <p className="text-sm text-white">Already have an account? <Link to="/login" className="font-bold text-black">Please Login</Link></p>

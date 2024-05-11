@@ -31,12 +31,12 @@ const Banner = () => {
                         }`}
                 >
                     <div className={`lg:w-1/2 h-full flex flex-col justify-center items-start p-2 lg:pl-56 md:p-6 ${activeIndex === index ? 'block' : 'hidden'
-                            }`}>
+                        }`}>
                         <h2 className="text-xl md:text-4xl lg:text-5xl font-bold mt-2 mb-2 lg:mb-0 lg:mt-0 text-accent">{banner.title}</h2>
                         <p className="text-xs md:text-xl lg:text-2xl font-semibold text-secondary mb-2 lg:mb-0">{banner.description}</p>
                     </div>
                     <div className={`lg:w-1/2 h-full flex justify-center items-center mb-2 ${activeIndex === index ? 'block' : 'hidden'
-                            }`}>
+                        }`}>
                         <img src={banner.image} alt={`Banner ${index + 1}`} className="h-[60%] w-[90%] rounded-xl shadow-2xl shadow-black" />
                     </div>
                 </div>

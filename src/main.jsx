@@ -13,7 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 // import AvailableFoods from './components/AvailableFoods/AvailableFoods';
 // import MyArtCraft from './components/MyArtCraft/MyArtCraft';
 // import AddFood from './components/AddFood/AddFood';
-// import CraftDetails from './components/CraftDetails/CraftDetails';
+import FeaturedFoodsHomeDetails from './components/FeaturedFoodsHomeDetails/FeaturedFoodsHomeDetails';
 // import UpdateCraft from './components/UpdateCraft/UpdateCraft';
 // import 'aos/dist/aos.css';
 // AOS.init();
@@ -64,16 +64,16 @@ const router = createBrowserRouter([
       //   </ProtectedRoute>,
       //   loader: ({ params }) => fetch(`https://users-management-server-five.vercel.app/myCraft/${params.userEmail}`)
       // },
-      // {
-      //   path: '/CraftDetails/:id',
-      // MyFoodRequest
-      //   element: <ProtectedRoute>
-      //     <CraftDetails></CraftDetails>
-      //   </ProtectedRoute>,
-      //   loader: ({ params }) => fetch(`https://users-management-server-five.vercel.app/craft/${params.id}`)
-      // },
+      {
+        path: '/FeaturedFoodsHomeDetails',
+        element: <ProtectedRoute>
+          <FeaturedFoodsHomeDetails></FeaturedFoodsHomeDetails>
+         </ProtectedRoute>,
+        // loader: ({ params }) => fetch(`https://users-management-server-five.vercel.app/craft/${params.id}`)
+      },
       // {
       //   path: '/allCraftCategoryDetails/:id',
+      // MyFoodRequest
       //   element: <AllCraftCategoryDetails></AllCraftCategoryDetails>,
       //  loader: ({ params }) => fetch(`https://users-management-server-five.vercel.app/craftSubcategory/${params.id}`)
       // },
