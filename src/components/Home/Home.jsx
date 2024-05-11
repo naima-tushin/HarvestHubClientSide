@@ -45,9 +45,6 @@ const Home = () => {
                 } */}
 
             </div>
-            {/* <Zoom> */}
-            <h1 className="text-center font-bold text-4xl text-[#322760] my-14">Art & Craft <span className='text-[#c54899]'>Categories</span></h1>
-            {/* </Zoom> */}
             <div className='flex flex-wrap justify-center gap-24'>
                 {/* {craftSubcategoryItems.map(craft => (
                     <div key={craft._id} className='flex flex-col items-center mx-4 my-2'>
