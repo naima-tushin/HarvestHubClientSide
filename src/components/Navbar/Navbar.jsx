@@ -47,7 +47,7 @@ const Navbar = () => {
                 <div className="flex-none gap-2">
                     {user?.email ? (
                         <div className="dropdown dropdown-end lg:ml-28 md:ml-[450px]">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border-2 border-[#322760] hover:border-[#c54899] ml-[100px] lg:ml-[0px] md:ml-[0px]">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border-2 border-black hover:border-accent ml-[100px] lg:ml-[0px] md:ml-[0px]">
                                 <div className="w-10 rounded-full">
                                     <img
                                         alt=""

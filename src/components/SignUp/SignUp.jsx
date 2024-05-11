@@ -5,18 +5,19 @@ import useAuth from "../../Hooks/useAuth";
 import { FaEnvelope, FaEye, FaEyeSlash, FaLink, FaLock, FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import backgroundImg from '../../assets/images/bg_login_signup.png';
+import backgroundImg from '../../assets/images/bg_login_signup.jpg';
+import logo from '../../assets/images/logo1.png';
 
 const SignUp = () => {
-    const { createUser, updateUserProfile } = useAuth();
-    const [signUpError, setSignUpError] = useState('');
+    const { createUser, updateUserProfile, user } = useAuth();
+    const [registerError, setRegisterError] = useState('');
     const [success, setSuccess] = useState('');
     const [showPass, setShowPass] = useState(false);
 
     const {
-        signUp,
+        register,
         handleSubmit,
         formState: { errors },
     } = useForm();
@@ -27,7 +28,7 @@ const SignUp = () => {
     const onSubmit = (data) => {
         const { email, password, fullname, imageURL } = data;
 
-        setSignUpError('');
+        setRegisterError('');
         setSuccess('');
 
         if (password.length < 6 || !/[A-Z]/.test(password) || !/[a-z]/.test(password)) {
@@ -39,7 +40,7 @@ const SignUp = () => {
             .then(() => {
                 updateUserProfile(fullname, imageURL)
                     .then(() => {
-                        setSuccess('User created successfully');
+                        toast.success("Signed Up Successfully!");
                         setTimeout(() => {
                             navigate(from);
                         }, 1000);
@@ -47,91 +48,82 @@ const SignUp = () => {
             })
             .catch((error) => {
                 console.error(error);
-                setSignUpError('Email already exists');
+                setRegisterError('Email already exists');
             });
     };
 
     return (
-        <div className="font-roboto">
+        <div className="font-roboto min-h-screen flex justify-center items-center" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(${backgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <Helmet>
                 <title>Harvest Hub | Register</title>
             </Helmet>
-
-            <div className="hero" style={{ backgroundImage: `url(${backgroundImg})` }}>
-                <div className="hero-content mt-6">
-                    <div className="card shrink-0 mb-6 md:w-[500px] lg:w-[500px] border-2 bg-gray-500 border-none">
-                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-
-                            <h1 className="flex justify-center font-bold text-xl lg:text-4xl text-[#322760]">Sign Up</h1>
-
-                            {signUpError && (
-                                <p className="text-red-500 flex justify-center text-base font-sedan p-1">{signUpError}</p>
-                            )}
-
-                            {success && (
-                                <p className="text-green-500 flex justify-center text-xl p-6">{success}</p>
-                            )}
-
-                            <div className="form-control">
-                                <label className="label text-[#322760]">
-                                    <span className="label-text">Full Name</span>
-                                </label>
-                                <div className="relative">
-                                    <input type="text" placeholder="Enter Your Full Name" {...signUp("fullname", { required: true })} className="input input-bordered pl-10 w-full" />
-                                    <FaUser className="absolute top-1/2 left-3 transform -translate-y-1/2 h-6 text-[#c54899]"></FaUser>
-                                </div>
-                                {errors.fullname && <span className="text-red-500 mt-2">This field is required</span>}
-                            </div>
-
-                            <div className="form-control">
-                                <label className="label text-[#322760]">
-                                    <span className="label-text">Email Address</span>
-                                </label>
-                                <div className="relative">
-                                    <input type="email" placeholder="Enter Your Email" {...signUp("email", { required: true })} className="input input-bordered pl-10 w-full" />
-                                    <FaEnvelope className="absolute top-1/2 left-3 transform -translate-y-1/2 h-6 text-[#c54899]"></FaEnvelope>
-                                </div>
-                                {errors.email && <span className="text-red-500 mt-2">This field is required</span>}
-                            </div>
-
-                            <div className="form-control">
-                                <label className="label text-[#322760]">
-                                    <span className="label-text">Photo URL</span>
-                                </label>
-                                <div className="relative">
-                                    <input type="text" placeholder="Enter Photo URL" {...signUp("imageURL", { required: true })} className="input input-bordered pl-10 w-full" />
-                                    <FaLink className="absolute top-1/2 left-3 transform -translate-y-1/2 h-6 text-[#c54899]"></FaLink>
-                                </div>
-                                {errors.imageURL && <span className="text-red-500 mt-2">This field is required</span>}
-                            </div>
-
-                            <div className="form-control">
-                                <label className="label text-[#322760]">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <div className="relative">
-                                    <input type={showPass ? "text" : "password"} placeholder="Enter Your Password" {...signUp("password", { required: true })} className="input input-bordered pl-10 w-full" />
-                                    <span onClick={() => setShowPass(!showPass)} className="absolute top-7 right-3 transform -translate-y-1/2 h-6 text-xl text-[#c54899]">
-                                        {showPass ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
-                                    </span>
-                                    <FaLock className="absolute top-1/2 left-3 transform -translate-y-1/2 h-6 text-[#c54899]"></FaLock>
-                                </div>
-                                {errors.password && <span className="text-red-500 mt-2">This field is required</span>}
-                            </div>
-
-                            <div className="form-control mt-6">
-                                <button className="btn bg-[#322760] hover:bg-[#c54899] border-none text-white text-xl ">Register</button>
-                            </div>
-
-                            <div className="text-center mt-2">
-                                <p className="text-sm text-white">Already have an account? <Link to="/login" className="font-medium text-[#322760]">Please Login</Link></p>
-                            </div>
-                            <SocialLogin></SocialLogin>
-                        </form>
-                        <ToastContainer position="bottom-center" autoClose={3000} />
+            <div className="lg:w-[40%] my-10">
+                <form onSubmit={handleSubmit(onSubmit)} className="bg-secondary shadow-md rounded px-4 lg:px-8 pt-6 pb-8 mb-4">
+                <div className="flex justify-center mb-2">
+                        <img className="w-1/5" src={logo} alt="" />
                     </div>
-                </div>
+                    <h1 className="text-2xl mb-6 text-center font-bold">Sign Up</h1>
+                    {registerError && <p className="text-red-500 mb-4 text-center">{registerError}</p>}
+                    {success && <p className="text-green-500 mb-4 text-center">{success}</p>}
+                    <div className="lg:flex md:flex justify-between">
+                    <div>
+                    <div className="mb-4">
+                        <label className="block text-black text-sm font-bold mb-2" htmlFor="fullname">
+                            Full Name
+                        </label>
+                        <div className="relative">
+                            <input type="text" placeholder="Enter Your Full Name" {...register("fullname", { required: true })} className="input input-bordered pl-10 w-full" />
+                            <FaUser className="absolute top-1/2 left-3 transform -translate-y-1/2 h-6 text-primary"></FaUser>
+                        </div>
+                        {errors.fullname && <span className="text-red-500">This field is required</span>}
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-black text-sm font-bold mb-2" htmlFor="email">
+                            Email Address
+                        </label>
+                        <div className="relative">
+                            <input type="email" placeholder="Enter Your Email" {...register("email", { required: true })} className="input input-bordered pl-10 w-full" />
+                            <FaEnvelope className="absolute top-1/2 left-3 transform -translate-y-1/2 h-6 text-primary"></FaEnvelope>
+                        </div>
+                        {errors.email && <span className="text-red-500">This field is required</span>}
+                    </div>
+                    </div>
+                    <div>
+                    <div className="mb-4">
+                        <label className="block text-black text-sm font-bold mb-2" htmlFor="imageURL">
+                            Photo URL
+                        </label>
+                        <div className="relative">
+                            <input type="text" placeholder="Enter Photo URL" {...register("imageURL", { required: true })} className="input input-bordered pl-10 w-full" />
+                            <FaLink className="absolute top-1/2 left-3 transform -translate-y-1/2 h-6 text-primary"></FaLink>
+                        </div>
+                        {errors.imageURL && <span className="text-red-500">This field is required</span>}
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-black text-sm font-bold mb-2" htmlFor="password">
+                            Password
+                        </label>
+                        <div className="relative">
+                            <input type={showPass ? "text" : "password"} placeholder="Enter Your Password" {...register("password", { required: true })} className="input input-bordered pl-10 w-full" />
+                            <span onClick={() => setShowPass(!showPass)} className="absolute top-7 right-3 transform -translate-y-1/2 h-6 text-xl text-primary">
+                                {showPass ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+                            </span>
+                            <FaLock className="absolute top-1/2 left-3 transform -translate-y-1/2 h-6 text-primary"></FaLock>
+                        </div>
+                        {errors.password && <span className="text-red-500">This field is required</span>}
+                    </div>
+                    </div>
+                    </div>
+                    <div className="mb-6">
+                        <button className="btn w-full bg-black hover:bg-primary hover:text-black text-accent border-2 border-primary hover:border-2 hover:border-black text-base">Sign Up</button>
+                    </div>
+                    <div className="text-center">
+                        <p className="text-sm text-white">Already have an account? <Link to="/login" className="font-bold text-black">Please Login</Link></p>
+                    </div>
+                </form>
+                <SocialLogin />
             </div>
+            <ToastContainer />
         </div>
     );
 };
