@@ -1,89 +1,55 @@
-import banner1 from '../../assets/images/banner_1.jpg'
-import banner2 from '../../assets/images/banner_2.jpg'
-import banner3 from '../../assets/images/banner_3.webp'
-import banner4 from '../../assets/images/banner_4.jpeg'
-import banner5 from '../../assets/images/banner_5.avif'
+import React, { useState } from 'react';
+import banner1 from '../../assets/images/banner_2.jpg';
+import banner2 from '../../assets/images/banner_3.webp';
+import banner3 from '../../assets/images/banner_1.jpg';
+import banner4 from '../../assets/images/banner_4.jpeg';
+import backgroundImg from '../../assets/images/bg_banner.jpg';
 
+const bannersData = [
+    { image: banner1, title: "Nourishing Unity on Wheels", description: "A brightly decorated van arrives, brimming with fresh produce and hearty meals, offering a lifeline of hope to the community. Residents gather eagerly as volunteers distribute nourishment and groceries, igniting a spirit of unity and support. Through each delivery, bonds strengthen, showcasing the resilience of compassion in challenging times." },
+
+    { image: banner2, title: "Sharing Generosity, Spreading Kindness", description: "Acts of kindness abound as neighbors extend help to those in need, creating an atmosphere filled with compassion. The aroma of freshly prepared dishes mixes with smiles and gratitude, transcending language barriers and fostering solidarity within the community." },
+
+    { image: banner3, title: "Community Gardens for All", description: "Community members join hands in planting a communal garden, aiming to provide fresh produce for those in need. With care and smiles, they cultivate a sense of empowerment and solidarity as they work together towards a future where nutritious food is accessible to all." },
+
+    { image: banner4, title: "Sharing the Bounty, Reducing Waste", description: "Members of a vibrant community gather, dishes brimming with food in hand. Laughter, stories, and smiles fill the air as neighbors bond over shared meals, embodying abundance and generosity. Together, they minimize waste, fostering connections and promoting a culture of care for people and the planet." }
+];
 
 const Banner = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const goToSlide = (index) => {
+        setActiveIndex(index);
+    };
+
     return (
-        <div>
-            <div className="carousel w-full mb-12">
-
-                {/* Slide1 */}
-                <div id="slide1" class="carousel-item relative w-full">
-                    <img src={banner1} class="carousel-image w-full h-[650px] md:h-[450px] lg:h-[550px]" alt="Banner Image" />
-                    <div class="absolute inset-0 flex flex-col justify-center items-end bg-gradient-to-r from-transparent to-[#322760]  text-white p-8">
-                        <div class="text-right">
-                            <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">Painting & Drawing Supplies</h2>
-                            <p class="text-lg md:text-xl lg:text-2xl font-semibold">Unleash Your Creativity with Our Premium Selection</p>
-                        </div>
-                        <div class="mt-8">
-                            <a href="#slide4" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&lt;</a>
-                            <a href="#slide2" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&gt;</a>
-                        </div>
+        <div className="relative w-[95%] rounded-xl mx-auto lg:h-screen overflow-hidden" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(${backgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            {bannersData.map((banner, index) => (
+                <div
+                    key={index}
+                    className={`relative lg:absolute inset-0 flex-col flex lg:flex-row ${activeIndex === index ? 'opacity-100' : 'opacity-0'
+                        }`}
+                >
+                    <div className={`lg:w-1/2 h-full flex flex-col justify-center items-start p-2 lg:pl-56 md:p-6 ${activeIndex === index ? 'block' : 'hidden'
+                            }`}>
+                        <h2 className="text-xl md:text-4xl lg:text-5xl font-bold mt-2 mb-2 lg:mb-0 lg:mt-0 text-accent">{banner.title}</h2>
+                        <p className="text-xs md:text-xl lg:text-2xl font-semibold text-secondary mb-2 lg:mb-0">{banner.description}</p>
+                    </div>
+                    <div className={`lg:w-1/2 h-full flex justify-center items-center mb-2 ${activeIndex === index ? 'block' : 'hidden'
+                            }`}>
+                        <img src={banner.image} alt={`Banner ${index + 1}`} className="h-[60%] w-[90%] rounded-xl shadow-2xl shadow-black" />
                     </div>
                 </div>
-
-                {/* Slide 2 */}
-                <div id="slide2" class="carousel-item relative w-full">
-                    <img src={banner2} class="carousel-image w-full h-[650px] md:h-[450px] lg:h-[550px]" alt="Banner Image" />
-                    <div class="absolute inset-0 flex flex-col justify-center items-end bg-gradient-to-r from-transparent to-[#322760]  text-white p-8">
-                        <div class="text-right">
-                            <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">Brushes & Paints</h2>
-                            <p class="text-lg md:text-xl lg:text-2xl font-semibold">Discover High-Quality Tools for Your Masterpieces</p>
-                        </div>
-                        <div class="mt-8">
-                            <a href="#slide1" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&lt;</a>
-                            <a href="#slide3" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&gt;</a>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Slide 3 */}
-                <div id="slide3" class="carousel-item relative w-full">
-                    <img src={banner3} class="carousel-image w-full h-[650px] md:h-[450px] lg:h-[550px]" alt="Banner Image" />
-                    <div class="absolute inset-0 flex flex-col justify-center items-end bg-gradient-to-r from-transparent to-[#322760]  text-white p-8">
-                        <div class="text-right">
-                            <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">Canvas & Paper</h2>
-                            <p class="text-lg md:text-xl lg:text-2xl font-semibold">Create on the Perfect Surface</p>
-                        </div>
-                        <div class="mt-8">
-                            <a href="#slide2" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&lt;</a>
-                            <a href="#slide4" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&gt;</a>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Slide 4 */}
-                <div id="slide4" class="carousel-item relative w-full">
-                    <img src={banner4} class="carousel-image  w-full h-[650px] md:h-[450px] lg:h-[550px]" alt="Banner Image" />
-                    <div class="absolute inset-0 flex flex-col justify-center items-end bg-gradient-to-r from-transparent to-[#322760]  text-white p-8">
-                        <div class="text-right">
-                            <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">Drawing Accessories</h2>
-                            <p class="text-lg md:text-xl lg:text-2xl font-semibold">Enhance Your Skills with the Right Tools</p>
-                        </div>
-                        <div class="mt-8">
-                            <a href="#slide3" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&lt;</a>
-                            <a href="#slide1" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&gt;</a>
-                        </div>
-                    </div>
-                </div>
-                {/* Slide 5 */}
-                <div id="slide3" class="carousel-item relative w-full">
-                    <img src={banner5} class="carousel-image w-full h-[650px] md:h-[450px] lg:h-[550px]" alt="Banner Image" />
-                    <div class="absolute inset-0 flex flex-col justify-center items-end bg-gradient-to-r from-transparent to-[#322760]  text-white p-8">
-                        <div class="text-right">
-                            <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">Canvas & Paper</h2>
-                            <p class="text-lg md:text-xl lg:text-2xl font-semibold">Create on the Perfect Surface</p>
-                        </div>
-                        <div class="mt-8">
-                            <a href="#slide2" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&lt;</a>
-                            <a href="#slide4" class="btn btn-circle bg-[#c54899] hover:bg-gray-500 text-white text-xl md:text-2xl lg:text-2xl mx-2">&gt;</a>
-                        </div>
-                    </div>
-                </div>
-
+            ))}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                {bannersData.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`h-6 w-6 rounded-full ${activeIndex === index ? 'bg-black' : 'bg-gray-300'
+                            }`}
+                    />
+                ))}
             </div>
         </div>
     );
