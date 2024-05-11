@@ -38,12 +38,6 @@ const Home = () => {
             <TestimonialsSection></TestimonialsSection>
             <ServicesSection></ServicesSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3">
-                {/* {
-                    craftItem.slice(0, 6).map(craftItems => (
-                        <CraftItemsSection key={craftItems._id} craftItems={craftItems}></CraftItemsSection>
-                    ))
-                } */}
-
             </div>
             <div className='flex flex-wrap justify-center gap-24'>
                 {/* {craftSubcategoryItems.map(craft => (
@@ -52,17 +46,6 @@ const Home = () => {
                     </div>
                 ))} */}
             </div>
-            {/* {
-                craftItem.slice(0, 1).map(craftItems => (
-                    <PaintingDrawingSection key={craftItems._id} craftItems={craftItems}></PaintingDrawingSection>
-                ))
-            }
-            {
-                craftItem.slice(0, 1).map(craftItems => (
-                    <Accordion key={craftItems._id} craftItems={craftItems}></Accordion>
-                ))
-            } */}
-
             <div>
                 <Helmet>
                     <title>Harvest Hub | Home</title>

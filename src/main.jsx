@@ -12,7 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 // import AOS from 'aos';
 // import AvailableFoods from './components/AvailableFoods/AvailableFoods';
 // import MyArtCraft from './components/MyArtCraft/MyArtCraft';
-// import AddFood from './components/AddFood/AddFood';
+import AddFood from './components/AddFood/AddFood';
 import FeaturedFoodsHomeDetails from './components/FeaturedFoodsHomeDetails/FeaturedFoodsHomeDetails';
 // import UpdateCraft from './components/UpdateCraft/UpdateCraft';
 // import 'aos/dist/aos.css';
@@ -21,6 +21,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import AddCraft from './components/AddCraft/AddCraft';
 // import AllCraftCategoryDetails from './components/AllCraftCategoryDetails/AllCraftCategoryDetails';
 // import AllSubcategoryCraft from './components/AllSubcategoryCraft/AllSubcategoryCraft';
 
@@ -50,12 +51,18 @@ const router = createBrowserRouter([
       //   loader: () => fetch('https://users-management-server-five.vercel.app/craft')
       // },
       // {
-      // {
-      //   path: '/ AddFood',
-      //   element: <ProtectedRoute>
-      //     <AddFood></AddFood>,
-      //   </ProtectedRoute>,
-      // },
+      {
+        path: '/addfood',
+        element: 
+          <AddFood></AddFood>,
+        
+      },
+      {
+        path: '/addcraft',
+        element: <ProtectedRoute>
+          <AddCraft></AddCraft>,
+        </ProtectedRoute>,
+      },
       // {
       //   path: '/myartcraft/:userEmail',
       // ManageMyFoods
