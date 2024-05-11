@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import img from '../../assets/images/banner_2.jpg';
 
 const FeaturedFoodsHome = () => {
     const foods = [
@@ -99,7 +100,7 @@ const FeaturedFoodsHome = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14 mx-auto w-[95%]">
                 {foods.map(food => (
                     <div key={food.id} className="bg-white bg-opacity-75 rounded-lg  overflow-hidden border-2 border-accent shadow-lg shadow-black">
-                        <img src={food.image} alt={food.name} className="w-full h-48 object-cover" />
+                        <img src={img} alt={food.name} className="w-full h-48 object-cover" />
                         <div className="p-4">
                             <h3 className="text-lg font-bold mb-2">{food.name}</h3>
                             <div className="flex items-center mb-2">
