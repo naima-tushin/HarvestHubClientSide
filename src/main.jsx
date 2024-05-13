@@ -7,21 +7,20 @@ import Home from './components/Home/Home';
 import { HelmetProvider } from 'react-helmet-async';
 import AuthProvider from './AuthProvider/AuthProvider';
 import Login from './components/Login/Login';
+import AddFood from './components/AddFood/AddFood';
 import SignUp from './components/SignUp/SignUp';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 // import AOS from 'aos';
 // import AvailableFoods from './components/AvailableFoods/AvailableFoods';
 // import MyArtCraft from './components/MyArtCraft/MyArtCraft';
-import AddFood from './components/AddFood/AddFood';
 import FeaturedFoodsHomeDetails from './components/FeaturedFoodsHomeDetails/FeaturedFoodsHomeDetails';
-// import UpdateCraft from './components/UpdateCraft/UpdateCraft';
 // import 'aos/dist/aos.css';
 // AOS.init();
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import AddCraft from './components/AddCraft/AddCraft';
+import AvailableFood from './components/AvailableFood/AvailableFood';
 // import AllCraftCategoryDetails from './components/AllCraftCategoryDetails/AllCraftCategoryDetails';
 // import AllSubcategoryCraft from './components/AllSubcategoryCraft/AllSubcategoryCraft';
 
@@ -52,17 +51,20 @@ const router = createBrowserRouter([
       // },
       // {
       {
-        path: '/addfood',
-        element: 
-          <AddFood></AddFood>,
-        
+        path: '/addFood',
+        element:
+          <ProtectedRoute>
+            <AddFood></AddFood>
+          </ProtectedRoute>,
       },
       {
-        path: '/addcraft',
-        element: <ProtectedRoute>
-          <AddCraft></AddCraft>,
-        </ProtectedRoute>,
+        path: '/availableFood',
+        element:
+            <AvailableFood></AvailableFood>,
+            loader: () => fetch('http://localhost:5000/allFood')
+      
       },
+
       // {
       //   path: '/myartcraft/:userEmail',
       // ManageMyFoods
@@ -75,7 +77,7 @@ const router = createBrowserRouter([
         path: '/FeaturedFoodsHomeDetails',
         element: <ProtectedRoute>
           <FeaturedFoodsHomeDetails></FeaturedFoodsHomeDetails>
-         </ProtectedRoute>,
+        </ProtectedRoute>,
         // loader: ({ params }) => fetch(`https://users-management-server-five.vercel.app/craft/${params.id}`)
       },
       // {

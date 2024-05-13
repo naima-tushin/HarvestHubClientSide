@@ -29,9 +29,7 @@ const Home = () => {
 
     return (
         <div className={isDarkMode ? "bg-slate-300" : "bg-white"}>
-            <button onClick={toggleTheme} className='my-4 text-right pr-6 w-full font-bold text-xl'>
-                {isDarkMode ? "Light Theme 🔆" : "Dark Theme 🌙"}
-            </button>
+           
 
             <Banner></Banner>
             <FeaturedFoodsHome></FeaturedFoodsHome>

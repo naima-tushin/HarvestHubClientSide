@@ -1,11 +1,12 @@
-import { Helmet } from "react-helmet-async";
+import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
-import React, { useState } from "react";
-// import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
+import backgroundImg from '../../assets/images/bg_addFood.avif';
+import logo from '../../assets/images/logo1.png';
 
 const AddFood = () => {
     const { user } = useAuth();
-   
+
     const [formData, setFormData] = useState({
         foodName: "",
         foodImage: "",
@@ -13,9 +14,10 @@ const AddFood = () => {
         pickupLocation: "",
         expiredDateTime: "",
         additionalNotes: "",
-        donatorName: user?.displayName || "", // Defaulting to user's display name if available
-        donatorEmail: user?.email || "", // Defaulting to user's email if available
-        foodStatus: "available", // Default value for food status
+        donatorImage: user?.photoURL || "",
+        donatorName: user?.displayName || "",
+        donatorEmail: user?.email || "",
+        foodStatus: "Available",
     });
 
     const handleChange = (e) => {
@@ -25,82 +27,94 @@ const AddFood = () => {
 
     const handleAddFood = (e) => {
         e.preventDefault();
-        
+
         if (formData.foodName !== '' && formData.foodImage !== '' && formData.foodQuantity !== '' && formData.pickupLocation !== '' && formData.expiredDateTime !== '') {
-            console.log(formData); 
-            // Example API call to save food data
-            fetch('https://your-api-endpoint.com/add_food', {
+            console.log(formData);
+            fetch('http://localhost:5000/addFood', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // Show success message
-                Swal.fire({
-                    title: `${formData.foodName} is Added`,
-                    text: "Food Added Successfully",
-                    icon: "success"
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    // Show success message
+                    alert(`${formData.foodName} is Added`);
+                })
+                .catch(error => {
+                    // console.error('Error:', error);
+                    // Show error message
+                    alert('Failed to add food. Please try again later.');
                 });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Show error message
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Failed to add food. Please try again later.',
-                    icon: 'error'
-                });
-            });
         } else {
             // Show validation error message
-            Swal.fire({
-                title: 'All fields are required',
-                text: 'Please fill in all the required fields',
-                icon: 'error'
-            });
+            alert('All fields are required. Please fill in all the required fields');
         }
     };
 
     return (
-        <div className="font-roboto h-full flex justify-center items-center border bg-[#322760] bg-opacity-40 mt-8">
+        <div className="lg:flex md:flex justify-end items-center  overflow-hidden lg:gap-10" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(${backgroundImg})`, backgroundSize: 'cover' }}>
             <Helmet>
                 <title>Harvest Hub | Add Food</title>
             </Helmet>
-            <form onSubmit={handleAddFood} className="p-16 gap-20">
-                <div className="grid grid-cols-4 gap-6">
-                    <div>
-                        <label htmlFor="foodName">Food Name</label>
-                        <input type="text" name="foodName" id="foodName" value={formData.foodName} onChange={handleChange} placeholder="Food Name" className="input input-bordered w-full max-w-xs" />
+            <form onSubmit={handleAddFood} className="bg-secondary p-8 rounded-lg shadow-md md:my-10 md:ml-5">
+                <img className="w-[15%] flex items-center justify-center mx-auto " src={logo} alt="" />
+                <h2 className="text-2xl font-semibold mb-4 text-center">Add Food</h2>
+                <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-4">
+                    <div className="mb-4">
+                        <label htmlFor="foodName" className="block text-sm font-medium text-black">Food Name</label>
+                        <input type="text" name="foodName" id="foodName" value={formData.foodName} onChange={handleChange} placeholder="Food Name" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
                     </div>
-                    <div>
-                        <label htmlFor="foodImage">Food Image</label>
-                        <input type="text" name="foodImage" id="foodImage" value={formData.foodImage} onChange={handleChange} placeholder="Food Image URL" className="input input-bordered w-full max-w-xs" />
+                    <div className="mb-4">
+                        <label htmlFor="foodImage" className="block text-sm font-medium text-black">Food Image URL</label>
+                        <input type="text" name="foodImage" id="foodImage" value={formData.foodImage} onChange={handleChange} placeholder="Food Image URL" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
                     </div>
-                    <div>
-                        <label htmlFor="foodQuantity">Food Quantity</label>
-                        <input type="text" name="foodQuantity" id="foodQuantity" value={formData.foodQuantity} onChange={handleChange} placeholder="Food Quantity" className="input input-bordered w-full max-w-xs" />
+                    <div className="mb-4">
+                        <label htmlFor="foodQuantity" className="block text-sm font-medium text-black">Food Quantity</label>
+                        <input type="number" name="foodQuantity" id="foodQuantity" value={formData.foodQuantity} onChange={handleChange} placeholder="Food Quantity" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
                     </div>
-                    <div>
-                        <label htmlFor="pickupLocation">Pickup Location</label>
-                        <input type="text" name="pickupLocation" id="pickupLocation" value={formData.pickupLocation} onChange={handleChange} placeholder="Pickup Location" className="input input-bordered w-full max-w-xs" />
+                    <div className="mb-4">
+                        <label htmlFor="pickupLocation" className="block text-sm font-medium text-black">Pickup Location</label>
+                        <input type="text" name="pickupLocation" id="pickupLocation" value={formData.pickupLocation} onChange={handleChange} placeholder="Pickup Location" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
                     </div>
-                    <div>
-                        <label htmlFor="expiredDateTime">Expired Date/Time</label>
-                        <input type="datetime-local" name="expiredDateTime" id="expiredDateTime" value={formData.expiredDateTime} onChange={handleChange} className="input input-bordered w-full max-w-xs" />
+                    <div className="mb-4">
+                        <label htmlFor="expiredDateTime" className="block text-sm font-medium text-black">Expired Date/Time</label>
+                        <input type="datetime-local" name="expiredDateTime" id="expiredDateTime" value={formData.expiredDateTime} onChange={handleChange} className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
                     </div>
-                    <div>
-                        <label htmlFor="additionalNotes">Additional Notes</label>
-                        <textarea name="additionalNotes" id="additionalNotes" value={formData.additionalNotes} onChange={handleChange} placeholder="Additional Notes" className="input input-bordered w-full max-w-xs" rows="3" />
+                    <div className="mb-4">
+                        <label htmlFor="additionalNotes" className="block text-sm font-medium text-black">Additional Notes</label>
+                        <input type="text" name="additionalNotes" id="additionalNotes" value={formData.additionalNotes} onChange={handleChange} placeholder="Additional Notes" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="donatorImage" className="block text-sm font-medium text-black">Donator Image</label>
+                        <input type="text" name="donatorImage" id="donatorImage" value={formData.donatorImage} onChange={handleChange} placeholder="Donator Image" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="donatorName" className="block text-sm font-medium text-black">Donator Name</label>
+                        <input type="text" name="donatorName" id="donatorName" value={formData.donatorName} onChange={handleChange} placeholder="Donator Name" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="donatorEmail" className="block text-sm font-medium text-black">Donator Email</label>
+                        <input type="text" name="donatorEmail" id="donatorEmail" value={formData.donatorEmail} onChange={handleChange} placeholder="Donator Email" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
                     </div>
                 </div>
-                <div className="flex justify-center">
-                    <button type="submit" className="btn bg-[#322760] hover:bg-[#c54899] text-white px-10 text-xl mt-8">Add</button>
+                <div className="flex justify-end mt-6">
+                    <button type="submit" className="inline-flex justify-center py-2 px-4  shadow-sm text-sm font-medium rounded-md text-accent border border-white bg-black hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2">
+                        Add Food
+                    </button>
                 </div>
             </form>
+            <div className="max-w-xs text-center lg:mr-20 lg:block md:block hidden">
+                <h1 className="text-3xl font-bold mb-4 text-black">Share Your Food, Spread Happiness</h1>
+                <p className="text-lg text-accent mb-8">Help those in need by sharing your surplus food. Your donation can make a huge difference in someone's life, providing nourishment and comfort to those who need it most. By contributing, you're not just giving food, but also spreading happiness and hope in our communities. Fill out the form to donate food items.</p>
+            </div>
         </div>
     );
 };
