@@ -13,9 +13,9 @@ const Navbar = () => {
             isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Available Foods</NavLink></li>
         <li><NavLink to="/addFood" className={({ isActive }) =>
             isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Add Food</NavLink></li>
-        <li><NavLink to={`/myartcraft/${user?.email}`} className={({ isActive }) =>
+        <li><NavLink to={`/manageMyFoods/${user?.email}`}  className={({ isActive }) =>
             isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Manage My Foods</NavLink></li>
-        <li><NavLink to={`/myartcraft/${user?.email}`} className={({ isActive }) =>
+        <li><NavLink to="/myFoodRequest" className={({ isActive }) =>
             isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>My Food Request</NavLink></li>
     </>
 
@@ -35,8 +35,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex-1">
-                        <Link to='/'>
-                            <img src={logo} alt="" className="lg:ml-6 ml-12 md:ml-60 w-[500px] lg:w-[130px] md:w-[180px] lg:h-24 md:h-28 h-14" /></Link>
+                        <img src={logo} alt="" className="lg:ml-6 ml-12 md:ml-60 w-[500px] lg:w-[130px] md:w-[180px] lg:h-24 md:h-28 h-14" />
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">

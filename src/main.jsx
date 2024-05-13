@@ -11,9 +11,7 @@ import AddFood from './components/AddFood/AddFood';
 import SignUp from './components/SignUp/SignUp';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 // import AOS from 'aos';
-// import AvailableFoods from './components/AvailableFoods/AvailableFoods';
-// import MyArtCraft from './components/MyArtCraft/MyArtCraft';
-import FeaturedFoodsHomeDetails from './components/FeaturedFoodsHomeDetails/FeaturedFoodsHomeDetails';
+import FoodDetails from './components/FoodDetails/FoodDetails';
 // import 'aos/dist/aos.css';
 // AOS.init();
 import {
@@ -21,8 +19,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import AvailableFood from './components/AvailableFood/AvailableFood';
-// import AllCraftCategoryDetails from './components/AllCraftCategoryDetails/AllCraftCategoryDetails';
-// import AllSubcategoryCraft from './components/AllSubcategoryCraft/AllSubcategoryCraft';
+import ManageMyFoods from './components/ManageMyFoods/ManageMyFoods';
+import MyFoodRequest from './components/MyFoodRequest/MyFoodRequest';
+import AvailableFoodDetails from './components/AvailableFoodDetails/AvailableFoodDetails';
+import UpdateFood from './components/UpdateFood/UpdateFood';
 
 const router = createBrowserRouter([
   {
@@ -33,8 +33,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        // loader: () => fetch('https://users-management-server-five.vercel.app/craft')
-
+        loader: () => fetch('http://localhost:5000/allFood'),
       },
       {
         path: '/login',
@@ -44,12 +43,14 @@ const router = createBrowserRouter([
         path: '/register',
         element: <SignUp></SignUp>,
       },
-      // {
-      //   path: '/AvailableFoods',
-      //   element: <AvailableFoods></AvailableFoods>,
-      //   loader: () => fetch('https://users-management-server-five.vercel.app/craft')
-      // },
-      // {
+      {
+        path: '/manageMyFoods/:userEmail',
+        element: <ProtectedRoute>
+          <ManageMyFoods></ManageMyFoods>
+          </ProtectedRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/myFood/${params.userEmail}`)
+
+      },
       {
         path: '/addFood',
         element:
@@ -62,35 +63,34 @@ const router = createBrowserRouter([
         element:
             <AvailableFood></AvailableFood>,
             loader: () => fetch('http://localhost:5000/allFood')
-      
       },
-
-      // {
-      //   path: '/myartcraft/:userEmail',
-      // ManageMyFoods
-      //   element: <ProtectedRoute>
-      //     <MyArtCraft></MyArtCraft>,
-      //   </ProtectedRoute>,
-      //   loader: ({ params }) => fetch(`https://users-management-server-five.vercel.app/myCraft/${params.userEmail}`)
-      // },
       {
-        path: '/FeaturedFoodsHomeDetails',
+        path: '/myFoodRequest',
         element: <ProtectedRoute>
-          <FeaturedFoodsHomeDetails></FeaturedFoodsHomeDetails>
+          <MyFoodRequest></MyFoodRequest>
         </ProtectedRoute>,
-        // loader: ({ params }) => fetch(`https://users-management-server-five.vercel.app/craft/${params.id}`)
       },
-      // {
-      //   path: '/allCraftCategoryDetails/:id',
-      // MyFoodRequest
-      //   element: <AllCraftCategoryDetails></AllCraftCategoryDetails>,
-      //  loader: ({ params }) => fetch(`https://users-management-server-five.vercel.app/craftSubcategory/${params.id}`)
-      // },
-      // {
-      //   path: '/updateCraft/:id',
-      //   element: <UpdateCraft></UpdateCraft>,
-      //   loader: ({ params }) => fetch(`https://users-management-server-five.vercel.app/craft/${params.id}`)
-      // },
+      {
+        path: '/foodDetails/:id',
+        element: <ProtectedRoute>
+          <FoodDetails></FoodDetails>
+        </ProtectedRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/foodDetails/${params.id}`),
+      }, 
+      {
+        path: '/updateFood/:id',
+        element: <ProtectedRoute>
+          <UpdateFood></UpdateFood>
+        </ProtectedRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/foodDetails/${params.id}`),
+      }, 
+      {
+        path: '/availableFoodDetails/:id',
+        element: <ProtectedRoute>
+          <AvailableFoodDetails></AvailableFoodDetails>
+        </ProtectedRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/foodDetails/${params.id}`),
+      },
     ]
   },
 ]);

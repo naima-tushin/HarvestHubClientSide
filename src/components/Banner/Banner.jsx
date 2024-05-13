@@ -23,7 +23,7 @@ const Banner = () => {
     };
 
     return (
-        <div className="relative w-[95%] rounded-xl mx-auto lg:h-screen overflow-hidden" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(${backgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="relative w-[95%] rounded-xl mx-auto lg:h-screen overflow-hidden lg:mt-20 mt-10" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(${backgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             {bannersData.map((banner, index) => (
                 <div
                     key={index}

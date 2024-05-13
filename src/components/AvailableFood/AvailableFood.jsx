@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 import { Helmet } from "react-helmet-async";
 import { useLoaderData } from 'react-router-dom';
-import FoodCard from '../FoodCard/FoodCard';
+import AvailableFoodCard from '../AvailableFoodCard/AvailableFoodCard';
 
 const AvailableFood = () => {
     const allFood = useLoaderData();
     const [searchQuery, setSearchQuery] = useState('');
-    const [sortOrder, setSortOrder] = useState(null); // Initialize sortOrder as null
+    const [sortOrder, setSortOrder] = useState(null); 
 
-    // Filter foods where foodStatus is Available
     const availableFoods = allFood.filter(food => food.foodStatus === "Available");
 
-    // Filter availableFoods based on search query
     const filteredFoods = availableFoods.filter(food =>
         food.foodName && food.foodName.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // Sort filteredFoods based on expiration date
     const sortedFoods = filteredFoods.sort((a, b) => {
         const dateA = new Date(a.expiredDateTime);
         const dateB = new Date(b.expiredDateTime);
@@ -58,14 +55,14 @@ const AvailableFood = () => {
                     </button>
                     <button
                         onClick={handleSortDesc}
-                        className={`bg-black text-accent hover:bg-accent hover:text-black px-4 py-2 rounded-md ${sortOrder === 'desc' ? 'bg-accent text-white' : ''}`}
+                        className={`bg-black text-accent hover:bg-accent hover:text-black px-4 py-2 rounded-md ${sortOrder === 'desc' ? 'bg-secondary text-white' : ''}`}
                     >
                         Expire Date In Descending
                     </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-12 md:gap-8 lg:w-[90%] mx-auto">
                     {sortedFoods.map(food => (
-                        <FoodCard key={food.id} foods={[food]} />
+                        <AvailableFoodCard key={food.id} foods={[food]} />
                     ))}
                 </div>
             </div>

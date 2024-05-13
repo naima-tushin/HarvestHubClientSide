@@ -4,7 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import AuthProvider from "../../AuthProvider/AuthProvider";
 const Root = () => {
     return (
-        <div>
+        <div className="bg-white">
             <Navbar></Navbar>
             <AuthProvider></AuthProvider>
             <Outlet></Outlet>
