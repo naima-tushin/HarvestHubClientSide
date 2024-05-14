@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from "react-helmet-async";
-import { useLoaderData } from 'react-router-dom';
-import AvailableFoodCard from '../AvailableFoodCard/AvailableFoodCard';
+import { useLoaderData  } from 'react-router-dom';
+import FoodCard from '../FoodCard/FoodCard';
 
 const AvailableFood = () => {
     const allFood = useLoaderData();
@@ -11,15 +11,16 @@ const AvailableFood = () => {
 
     const availableFoods = allFood.filter(food => food.foodStatus === "Available");
 
-    const filteredFoods = availableFoods.filter(food =>
+    // Initial sorting based on addedIndex
+    const sortedFoods = availableFoods.slice().sort((a, b) => {
+        if (a.addedIndex < b.addedIndex) return -1;
+        if (a.addedIndex > b.addedIndex) return 1;
+        return 0;
+    });
+
+    const filteredFoods = sortedFoods.filter(food =>
         food.foodName && food.foodName.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
-    const sortedFoods = filteredFoods.sort((a, b) => {
-        const dateA = new Date(a.expiredDateTime);
-        const dateB = new Date(b.expiredDateTime);
-        return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
-    });
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
@@ -36,6 +37,14 @@ const AvailableFood = () => {
     const toggleLayout = () => {
         setLayoutMode(prevMode => prevMode === 'three-column' ? 'two-column' : 'three-column');
     };
+
+    // Sorting based on expiration date
+    let sortedFilteredFoods = [...filteredFoods];
+    if (sortOrder === 'asc') {
+        sortedFilteredFoods.sort((a, b) => new Date(a.expiredDateTime) - new Date(b.expiredDateTime));
+    } else if (sortOrder === 'desc') {
+        sortedFilteredFoods.sort((a, b) => new Date(b.expiredDateTime) - new Date(a.expiredDateTime));
+    }
 
     return (
         <div className='min-h-screen bg-gray-100'>
@@ -72,8 +81,8 @@ const AvailableFood = () => {
                     </button>
                 </div>
                 <div className={`grid ${layoutMode === 'three-column' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:w-[90%]' : 'grid-cols-1 md:grid-cols-2 lg:w-[60%]'} lg:gap-12 md:gap-8  mx-auto`}>
-                    {sortedFoods.map(food => (
-                        <AvailableFoodCard key={food.id} foods={[food]} />
+                    {sortedFilteredFoods.map(food => (
+                        <FoodCard key={food.id} foods={[food]} />
                     ))}
                 </div>
             </div>

@@ -28,7 +28,7 @@ const MyFoodRequest = () => {
           <div key={request.id} className="bg-gray-100 p-4 rounded-md items-center justify-center flex">
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <p><span className="font-semibold">Donar Name:</span> {request.donatorName}</p>
+                <p><span className="font-semibold">Donator Name:</span> {request.donatorName}</p>
                 <p><span className="font-semibold">Food Name:</span> {request.foodName}</p>
                 <p><span className="font-semibold">Food Quantity:</span> {request.foodQuantity}</p>
               </div>

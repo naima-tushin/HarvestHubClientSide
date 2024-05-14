@@ -37,6 +37,8 @@ const FoodCard = ({ foods }) => {
                                     <span className="text-gray-700">{food.donatorName}</span>
                                 </div>
                                 <p className="text-gray-700 mb-2">Quantity: {food.foodQuantity} servings</p>
+                                <p className="text-gray-700 mb-2">Pickup Location: {food.pickupLocation} servings</p>
+                                <p className="text-gray-700 mb-2">Additional Notes: {food.additionalNotes} servings</p>
                                 <p className="text-gray-700 mb-2">Expiry Date: {formatDate(food.expiredDateTime)}</p>
                                 <p className="text-gray-700 mb-2">Expiry Time: {formatTime(food.expiredDateTime)}</p>
                             </div>

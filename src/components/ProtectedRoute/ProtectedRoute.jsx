@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children }) => {
     }, [loading]);
 
     if (spinLoading) {
-        return <PacmanLoader color="#36D7B7" size={50} />;
+        return <PacmanLoader color="#3d251e" size={20} />;
     }
 
     if (!user) {
