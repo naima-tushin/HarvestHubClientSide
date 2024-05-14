@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from "react-helmet-async";
 import { useLoaderData } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const ManageMyFoods = () => {
-  const allFood = useLoaderData();
+  const allLoadedFood = useLoaderData();
+  const [allFood, setAllFood] = useState(allLoadedFood);
 
   const formatDateTime = (dateString) => {
     const date = new Date(dateString);
@@ -18,6 +20,41 @@ const ManageMyFoods = () => {
     const formattedHours = hours % 12 || 12;
     return `Date: ${day}-${month}-${year} Time: ${formattedHours}:${minutes} ${ampm}`;
   };
+  const handleDelete = _id => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`http://localhost:5000/foodDelete/${_id}`, {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+              if(data.deletedCount > 0){
+                  const deletedFood = allLoadedFood.find(food => food._id === _id);
+                  Swal.fire({
+                      title: `${deletedFood.foodName} is Deleted!`,
+                      text: "Your food has been deleted.",
+                      icon: "success"
+                  });
+                  setAllFood(allFood => allFood.filter(food => food._id !== _id)); 
+                  
+              } else {
+                  console.log("Deletion failed.");
+              }
+          })
+
+         
+        }
+      });
+}
 
   return (
     <div className="container mx-auto">
@@ -37,7 +74,7 @@ const ManageMyFoods = () => {
           </tr>
         </thead>
         <tbody>
-          {allFood && allFood.map(food => (
+          {allLoadedFood && allLoadedFood.map(food => (
             <tr key={food.id}>
               <td className="border px-4 py-2">{food.foodName}</td>
               <td className="border px-4 py-2">{food.foodQuantity}</td>
@@ -55,7 +92,7 @@ const ManageMyFoods = () => {
 
                 <button
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => onDelete(food.id)}
+                  onClick={() => handleDelete(food._id)}
                 >
                   Delete
                 </button>

@@ -92,18 +92,7 @@ const AddFood = () => {
                         <label htmlFor="additionalNotes" className="block text-sm font-medium text-black">Additional Notes</label>
                         <input type="text" name="additionalNotes" id="additionalNotes" value={formData.additionalNotes} onChange={handleChange} placeholder="Additional Notes" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="donatorImage" className="block text-sm font-medium text-black">Donator Image</label>
-                        <input type="text" name="donatorImage" id="donatorImage" value={formData.donatorImage} onChange={handleChange} placeholder="Donator Image" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="donatorName" className="block text-sm font-medium text-black">Donator Name</label>
-                        <input type="text" name="donatorName" id="donatorName" value={formData.donatorName} onChange={handleChange} placeholder="Donator Name" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="donatorEmail" className="block text-sm font-medium text-black">Donator Email</label>
-                        <input type="text" name="donatorEmail" id="donatorEmail" value={formData.donatorEmail} onChange={handleChange} placeholder="Donator Email" className="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded py-2 px-2" />
-                    </div>
+                    
                 </div>
                 <div className="flex justify-end mt-6">
                     <button type="submit" className="inline-flex justify-center py-2 px-4  shadow-sm text-sm font-medium rounded-md text-accent border border-white bg-black hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2">

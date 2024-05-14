@@ -65,10 +65,11 @@ const router = createBrowserRouter([
             loader: () => fetch('http://localhost:5000/allFood')
       },
       {
-        path: '/myFoodRequest',
+        path: '/myFoodRequest/:userEmail',
         element: <ProtectedRoute>
           <MyFoodRequest></MyFoodRequest>
         </ProtectedRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/myRequestFood/${params.userEmail}`)
       },
       {
         path: '/foodDetails/:id',

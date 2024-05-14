@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const AvailableFoodDetails = () => {
 
@@ -40,12 +41,13 @@ const AvailableFoodDetails = () => {
                     foodImage: foodDetails.foodImage,
                     foodQuantity: foodDetails.foodQuantity,
                     pickupLocation: foodDetails.pickupLocation,
-                    expiredDateTime: new Date().toISOString(), 
+                    expiredDateTime: foodDetails.expiredDateTime,
+                    requestDateTime: new Date().toISOString(),
                     additionalNotes: additionalNotes,
                     donatorName: foodDetails.donatorName,
                     donatorEmail: foodDetails.donatorEmail,
                     foodStatus: 'Available',
-                    requestEmail: user?.email, 
+                    userEmail: user?.email, 
                 })
             });
             
@@ -55,6 +57,11 @@ const AvailableFoodDetails = () => {
     
             setShowModal(false);
             setAdditionalNotes('');
+            Swal.fire({
+                title: `Request Sent`,
+                text: "Successful",
+                icon: "success"
+            });
         } catch (error) {
             console.error('There was a problem with the request:', error);
         }
