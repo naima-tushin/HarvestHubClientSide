@@ -1,9 +1,10 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { Helmet } from "react-helmet-async";
 
 const FoodDetails = () => {
-    const foodDetails = useLoaderData(); 
-   
+    const foodDetails = useLoaderData();
+
     const formatDateTime = (dateString) => {
         const date = new Date(dateString);
         const day = date.getDate().toString().padStart(2, '0');
@@ -18,6 +19,9 @@ const FoodDetails = () => {
 
     return (
         <div className="container mx-auto px-5 py-8 relative">
+            <Helmet>
+                <title>Harvest Hub | Featured Food Details</title>
+            </Helmet>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="md:col-span-1 relative">
                     <div className="relative">

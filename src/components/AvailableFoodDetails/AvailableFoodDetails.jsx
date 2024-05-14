@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AvailableFoodDetails = () => {
 
@@ -73,6 +74,9 @@ const AvailableFoodDetails = () => {
 
     return (
         <div className="container mx-auto px-5 py-8 relative">
+            <Helmet>
+                <title>Harvest Hub | Available Food Details</title>
+            </Helmet>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="md:col-span-1 relative">
                     <div className="relative">

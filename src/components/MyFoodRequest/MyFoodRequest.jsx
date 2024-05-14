@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { Helmet } from "react-helmet-async";
 
 const MyFoodRequest = () => {
   const allFood = useLoaderData();
@@ -18,6 +19,9 @@ const MyFoodRequest = () => {
 
   return (
     <div className="container mx-auto mt-8">
+      <Helmet>
+        <title>Harvest Hub | My Food Request</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4">My Food Requests</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {allFood.map(request => (

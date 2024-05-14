@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-// import Spinner from "../Spinner/Spinner";
 import { useEffect, useState } from "react";
+import { PacmanLoader } from "react-spinners";
 
 const ProtectedRoute = ({ children }) => {
     const { user, loading } = useAuth();
@@ -9,18 +9,17 @@ const ProtectedRoute = ({ children }) => {
     const [spinLoading, setSpinLoading] = useState(true);
 
     useEffect(() => {
-        if (!spinLoading) {
-            setSpinLoading(false)
+        if (!loading) {
+            setSpinLoading(false);
         }
-    }, [spinLoading])
+    }, [loading]);
 
-
-    // if (loading) {
-    //     return <Spinner></Spinner>
-    // }
+    if (spinLoading) {
+        return <PacmanLoader color="#36D7B7" size={50} />;
+    }
 
     if (!user) {
-        return <Navigate to='/login' state={location?.pathname || '/'}></Navigate>
+        return <Navigate to='/login' state={location?.pathname || '/'} />;
     }
 
     return (

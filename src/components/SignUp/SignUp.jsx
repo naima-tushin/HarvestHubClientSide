@@ -55,7 +55,7 @@ const SignUp = () => {
     return (
         <div className="font-roboto min-h-screen flex justify-center items-center" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(${backgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <Helmet>
-                <title>Harvest Hub | Register</title>
+                <title>Harvest Hub | Sign Up</title>
             </Helmet>
             <div className="lg:w-[40%] my-10">
                 <form onSubmit={handleSubmit(onSubmit)} className="bg-secondary shadow-md rounded px-4 lg:px-8 pt-6 pb-8 mb-4">
