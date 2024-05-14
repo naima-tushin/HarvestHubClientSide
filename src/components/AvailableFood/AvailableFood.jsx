@@ -6,7 +6,8 @@ import AvailableFoodCard from '../AvailableFoodCard/AvailableFoodCard';
 const AvailableFood = () => {
     const allFood = useLoaderData();
     const [searchQuery, setSearchQuery] = useState('');
-    const [sortOrder, setSortOrder] = useState(null); 
+    const [sortOrder, setSortOrder] = useState(null);
+    const [layoutMode, setLayoutMode] = useState('three-column'); // Initial layout mode
 
     const availableFoods = allFood.filter(food => food.foodStatus === "Available");
 
@@ -30,6 +31,10 @@ const AvailableFood = () => {
 
     const handleSortDesc = () => {
         setSortOrder('desc');
+    };
+
+    const toggleLayout = () => {
+        setLayoutMode(prevMode => prevMode === 'three-column' ? 'two-column' : 'three-column');
     };
 
     return (
@@ -59,8 +64,14 @@ const AvailableFood = () => {
                     >
                         Expire Date In Descending
                     </button>
+                    <button
+                        onClick={toggleLayout}
+                        className="bg-black text-accent hover:bg-accent hover:text-black px-4 py-2 rounded-md ml-2"
+                    >
+                        Change Layout
+                    </button>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-12 md:gap-8 lg:w-[90%] mx-auto">
+                <div className={`grid ${layoutMode === 'three-column' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:w-[90%]' : 'grid-cols-1 md:grid-cols-2 lg:w-[60%]'} lg:gap-12 md:gap-8  mx-auto`}>
                     {sortedFoods.map(food => (
                         <AvailableFoodCard key={food.id} foods={[food]} />
                     ))}
