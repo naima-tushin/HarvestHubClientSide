@@ -47,6 +47,20 @@ const AddFood = () => {
                     console.log(data);
                     // Show success message
                     alert(`${formData.foodName} is Added`);
+                    
+                    setFormData({
+                        foodName: "",
+                        foodImage: "",
+                        foodQuantity: "",
+                        pickupLocation: "",
+                        expiredDateTime: "",
+                        additionalNotes: "",
+                        donatorImage: user?.photoURL || "",
+                        donatorName: user?.displayName || "",
+                        donatorEmail: user?.email || "",
+                        foodStatus: "Available",
+                    });
+                    
                 })
                 .catch(error => {
                     // console.error('Error:', error);
@@ -62,11 +76,11 @@ const AddFood = () => {
     return (
         <div className="lg:flex md:flex justify-end items-center  overflow-hidden lg:gap-10" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(${backgroundImg})`, backgroundSize: 'cover' }}>
             <Helmet>
-                <title>Harvest Hub | Add Food</title>
+                <title>Harvest Hub | Add Foods</title>
             </Helmet>
             <form onSubmit={handleAddFood} className="bg-secondary p-8 rounded-lg shadow-md md:my-10 md:ml-5">
                 <img className="w-[15%] flex items-center justify-center mx-auto " src={logo} alt="" />
-                <h2 className="text-2xl font-semibold mb-4 text-center">Add Food</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-center">Add Foods</h2>
                 <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-4">
                     <div className="mb-4">
                         <label htmlFor="foodName" className="block text-sm font-medium text-black">Food Name</label>

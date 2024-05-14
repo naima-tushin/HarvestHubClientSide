@@ -47,7 +47,7 @@ const AvailableFood = () => {
     }
 
     return (
-        <div className='min-h-screen bg-gray-100'>
+        <div className='min-h-screen bg-white mb-10'>
             <Helmet>
                 <title>Harvest Hub | Available Foods</title>
             </Helmet>

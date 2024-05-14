@@ -12,11 +12,11 @@ const Navbar = () => {
         <li><NavLink to="/availableFood" className={({ isActive }) =>
             isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Available Foods</NavLink></li>
         <li><NavLink to="/addFood" className={({ isActive }) =>
-            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Add Food</NavLink></li>
+            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Add Foods</NavLink></li>
         <li><NavLink to={`/manageMyFoods/${user?.email}`}  className={({ isActive }) =>
-            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Manage My Foods</NavLink></li>
+            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Manage Foods</NavLink></li>
         <li><NavLink to={`/myFoodRequest/${user?.email}`} className={({ isActive }) =>
-            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>My Food Request</NavLink></li>
+            isActive ? 'bg-black text-accent hover:bg-secondary hover:text-black border-2 border-secondary hover:border-2 hover:border-black' : 'text-black hover:bg-secondary hover:text-black'}>Food Requests</NavLink></li>
     </>
 
     return (

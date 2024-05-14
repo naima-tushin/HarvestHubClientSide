@@ -22,7 +22,7 @@ const FoodCard = ({ foods }) => {
     };
 
     return (
-        <div className="container mx-auto bg-accent bg-opacity-55 p-4 rounded-lg mt-10">
+        <div className="container mx-auto bg-accent bg-opacity-55 p-4 rounded-lg mt-10 shadow-lg shadow-black">
             <ul className="divide-y divide-gray-200">
                 {foods.map(food => (
                     <li key={food.id} className="py-4">
@@ -33,16 +33,16 @@ const FoodCard = ({ foods }) => {
                             </div>
                             <div>
                                 <div className="flex items-center mb-2">
-                                    <img src={food.donatorImage} alt={food.donatorName} className="w-8 h-8 rounded-full mr-2" />
-                                    <span className="text-gray-700">{food.donatorName}</span>
+                                    <img src={food.donatorImage} alt={food.donatorName} className="w-8 h-8 rounded-full mr-2 border-black border-2" />
+                                    <span className="text-black font-black">{food.donatorName}</span>
                                 </div>
-                                <p className="text-gray-700 mb-2">Quantity: {food.foodQuantity} servings</p>
-                                <p className="text-gray-700 mb-2">Pickup Location: {food.pickupLocation} servings</p>
-                                <p className="text-gray-700 mb-2">Additional Notes: {food.additionalNotes} servings</p>
-                                <p className="text-gray-700 mb-2">Expiry Date: {formatDate(food.expiredDateTime)}</p>
-                                <p className="text-gray-700 mb-2">Expiry Time: {formatTime(food.expiredDateTime)}</p>
+                                <p className="text-black mb-2"><span className='font-bold'>Food Quantity:</span> {food.foodQuantity} servings</p>
+                                <p className="text-black mb-2"><span className='font-bold'>Pickup Location:</span> {food.pickupLocation}</p>
+                                <p className="text-black mb-2"><span className='font-bold'>Expiry Date:</span> {formatDate(food.expiredDateTime)}</p>
+                                <p className="text-black mb-2"><span className='font-bold'>Expiry Time:</span> {formatTime(food.expiredDateTime)}</p>
                             </div>
                         </div>
+                        <p className="text-black mb-2 mt-2"><span className='font-bold underline'>Additional Notes:</span> {food.additionalNotes} </p>
                         <div className="mt-4">
                             <Link to={`/foodDetails/${food._id}`}>
                                 <button className="bg-black text-accent border-accent border-4 hover:border-black hover:bg-accent hover:text-white px-4 py-2 rounded-md mx-auto flex">View Details</button>

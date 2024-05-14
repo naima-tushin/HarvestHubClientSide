@@ -21,7 +21,6 @@ import {
 import AvailableFood from './components/AvailableFood/AvailableFood';
 import ManageMyFoods from './components/ManageMyFoods/ManageMyFoods';
 import MyFoodRequest from './components/MyFoodRequest/MyFoodRequest';
-// import AvailableFoodDetails from './components/AvailableFoodDetails/AvailableFoodDetails';
 import UpdateFood from './components/UpdateFood/UpdateFood';
 
 const router = createBrowserRouter([
@@ -85,13 +84,6 @@ const router = createBrowserRouter([
         </ProtectedRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/foodDetails/${params.id}`),
       }, 
-      // {
-      //   path: '/availableFoodDetails/:id',
-      //   element: <ProtectedRoute>
-      //     <AvailableFoodDetails></AvailableFoodDetails>
-      //   </ProtectedRoute>,
-      //   loader: ({ params }) => fetch(`http://localhost:5000/foodDetails/${params.id}`),
-      // },
     ]
   },
 ]);
