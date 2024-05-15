@@ -33,7 +33,7 @@ const FoodDetails = () => {
 
     const handleRequestFood = async () => {
         try {
-            const response = await fetch('http://localhost:5000/addRequestFood', {
+            const response = await fetch('https://harvest-hub-server-nine.vercel.app/addRequestFood', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ const FoodDetails = () => {
             }
 
             const updateFood = { foodStatus: "Requested" };
-            await fetch(`http://localhost:5000/foodUpdateFoodStatus/${foodDetails._id}`, {
+            await fetch(`https://harvest-hub-server-nine.vercel.app/foodUpdateFoodStatus/${foodDetails._id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

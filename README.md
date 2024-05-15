@@ -1,6 +1,6 @@
 Name of Website: Harvest Hub (Assignment_ID: assignment_category_0007)
 
-Vercel Live Site URL: https://users-management-server-it4wiz57o-naima-tushins-projects.vercel.app
+Vercel Live Site URL: https://harvest-hub-server-nine.vercel.app
 
 Firebase Hosting URL: https://harvest-hub-client.web.app
 
