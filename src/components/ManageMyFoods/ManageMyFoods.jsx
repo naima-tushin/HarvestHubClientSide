@@ -64,7 +64,7 @@ const ManageMyFoods = () => {
       <div className="overflow-x-auto">
         <table className="hidden md:hidden lg:table   w-full md:w-max lg:w-[95%] mx-auto mb-8">
           <thead>
-            <tr>
+            <tr className='text-center'>
               <th className="text-black text-base px-4 py-2">Food Name</th>
               <th className="text-black text-base px-4 py-2">Quantity</th>
               <th className="text-black text-base px-4 py-2">Pickup Location</th>

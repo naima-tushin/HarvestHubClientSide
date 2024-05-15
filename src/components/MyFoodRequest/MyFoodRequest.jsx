@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
+import { FaUserAlt, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 
 const MyFoodRequest = () => {
   const allFood = useLoaderData();
@@ -14,32 +15,31 @@ const MyFoodRequest = () => {
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const ampm = hours >= 12 ? 'pm' : 'am';
     const formattedHours = hours % 12 || 12;
-    return `Date: ${day}-${month}-${year} Time: ${formattedHours}:${minutes} ${ampm}`;
+    return `${day}-${month}-${year}, ${formattedHours}:${minutes} ${ampm}`;
   };
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto lg:my-8 my-6">
       <Helmet>
         <title>Harvest Hub | My Food Request</title>
       </Helmet>
-      <h1 className="text-2xl font-bold mb-4">My Food Requests</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <h1 className="text-3xl font-bold lg:my-10 my-6 text-center text-primary">My Food Requests</h1>
+      <div className="w-[95%] gap-6 mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {allFood.map(request => (
-          <div key={request.id} className="bg-gray-100 p-4 rounded-md items-center justify-center flex">
-            <div className="grid grid-cols-3 gap-4">
-              <div>
-                <p><span className="font-semibold">Donator Name:</span> {request.donatorName}</p>
-                <p><span className="font-semibold">Food Name:</span> {request.foodName}</p>
-                <p><span className="font-semibold">Food Quantity:</span> {request.foodQuantity}</p>
+          <div key={request.id} className="flex items-start mb-6">
+            <div className="w-1/6 flex flex-col items-center">
+              <div className="rounded-full bg-primary text-white p-2 mb-2">
+                <FaUserAlt />
               </div>
-              <div>
-                <p><span className="font-semibold">Pickup Location:</span> {request.pickupLocation}</p>
-                <p><span className="font-semibold">Expire Date:</span> {formatDateTime(request.expiredDateTime)}</p>
-                <p><span className="font-semibold">Request Date:</span> {formatDateTime(request.requestDateTime)}</p>
-              </div>
+              <div className="h-full bg-gray-300 w-1"></div>
+            </div>
+            <div className="w-5/6 bg-gray-100 p-4 rounded-lg shadow-md">
+              <p className="text-lg font-semibold mb-2">Donator Name: {request.donatorName}</p>
+              <p className="flex items-center text-black mb-2"><FaMapMarkerAlt className="mr-2" /> Pickup Location: {request.pickupLocation}</p>
+              <p className="flex items-center text-black mb-2"><FaClock className="mr-2" /> Expire Date: {formatDateTime(request.expiredDateTime)}</p>
+              <p className="flex items-center text-black"><FaClock className="mr-2" /> Request Date: {formatDateTime(request.requestDateTime)}</p>
             </div>
           </div>
-
         ))}
       </div>
     </div>
