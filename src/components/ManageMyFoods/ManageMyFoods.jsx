@@ -46,6 +46,7 @@ const ManageMyFoods = () => {
             text: "Your food has been deleted.",
             icon: "success"
           });
+          window.location.reload(); 
         } else {
           console.log("Deletion failed.");
         }

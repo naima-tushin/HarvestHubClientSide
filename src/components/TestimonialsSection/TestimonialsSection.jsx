@@ -3,13 +3,26 @@ import logo from '../../assets/images/img1.avif';
 import logo2 from '../../assets/images/img2.avif';
 import logo3 from '../../assets/images/img3.jpg';
 import backgroundImg from '../../assets/images/banner_testimonial.jpg';
+import { motion } from 'framer-motion';
+
 
 
 const TestimonialsSection = () => {
+    const headingVariants = {
+        hidden: { scale: 0.9, opacity: 0 },
+        visible: { 
+            scale: [1, 1, 1],
+            opacity: 1,
+            transition: { duration: 2, repeat: 100 }
+        }
+    };
 
     return (
         <section className='mb-10'>
-            <h2 className="text-4xl text-primary font-bold mb-8 mt-10 text-center">Testimonials</h2>
+            <motion.h2 className="text-4xl lg:my-10 my-8 font-bold text-center text-primary"
+                initial="hidden"
+                animate="visible"
+                variants={headingVariants}>Testimonials</motion.h2>
             <div className="py-12 w-[95%] mx-auto rounded-md" style={{ backgroundImage: `linear-gradient(to bottom, rgba(86, 61, 45, 0.7), rgba(154, 123, 79, 0.4)), url(${backgroundImg})`, backgroundSize: 'cover'}}>
             <div className="container mx-auto px-8">
                 

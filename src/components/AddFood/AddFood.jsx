@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import backgroundImg from '../../assets/images/bg_addFood.avif';
 import logo from '../../assets/images/logo1.png';
+import Swal from "sweetalert2";
 
 const AddFood = () => {
     const { user } = useAuth();
@@ -46,7 +47,11 @@ const AddFood = () => {
                 .then(data => {
                     console.log(data);
                     // Show success message
-                    alert(`${formData.foodName} is Added`);
+                    Swal.fire({
+                        title: `${formData.foodName} is Added`,
+                        text: "Food Added Successfully",
+                        icon: "success"
+                    });
                     
                     setFormData({
                         foodName: "",
@@ -65,11 +70,19 @@ const AddFood = () => {
                 .catch(error => {
                     // console.error('Error:', error);
                     // Show error message
-                    alert('Failed to add food. Please try again later.');
+                    Swal.fire({
+                        title: `Failed to add food`,
+                        text: "Please try again later.",
+                        icon: "error"
+                    });
                 });
         } else {
             // Show validation error message
-            alert('All fields are required. Please fill in all the required fields');
+            Swal.fire({
+                title: `All fields are required`,
+                text: "Please fill in all the required fields",
+                icon: "error"
+            });
         }
     };
 

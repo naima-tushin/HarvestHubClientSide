@@ -1,12 +1,23 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 
 const ServicesSection = () => {
 
-
+    const headingVariants = {
+        hidden: { scale: 0.9, opacity: 0 },
+        visible: { 
+            scale: [1, 1., 1],
+            opacity: 1,
+            transition: { duration: 2, repeat: 100 }
+        }
+    };
     return (
         <section >
-            <h2 className="text-4xl text-primary font-bold mt-10 text-center">Website Hours</h2>
+             <motion.h2 className="text-4xl font-bold text-center text-primary"
+                initial="hidden"
+                animate="visible"
+                variants={headingVariants}>Website Hours</motion.h2>
             <div className="bg-white py-10 w-[95%] mx-auto rounded-md">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
