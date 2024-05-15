@@ -10,18 +10,16 @@ import Login from './components/Login/Login';
 import AddFood from './components/AddFood/AddFood';
 import SignUp from './components/SignUp/SignUp';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-// import AOS from 'aos';
 import FoodDetails from './components/FoodDetails/FoodDetails';
-// import 'aos/dist/aos.css';
-// AOS.init();
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
 import AvailableFood from './components/AvailableFood/AvailableFood';
 import ManageMyFoods from './components/ManageMyFoods/ManageMyFoods';
 import MyFoodRequest from './components/MyFoodRequest/MyFoodRequest';
 import UpdateFood from './components/UpdateFood/UpdateFood';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
 
 const router = createBrowserRouter([
   {

@@ -9,6 +9,8 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import backgroundImg from '../../assets/images/bg_login_signup.jpg';
 import logo from '../../assets/images/logo1.png';
+import axios from "axios";
+
 
 const Login = () => {
     const { signInUser } = useAuth();
@@ -29,17 +31,21 @@ const Login = () => {
 
         signInUser(email, password)
             .then((result) => {
-                if (result.user) {
-                    toast.success('Logged In successfully!!!')
-                    setTimeout(() => {
-                        navigate(from);
-                    }, 1000);
-                }
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const user = { email };
+                axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
+  .then(res => {
+    console.log(res.data);
+    if(res.data.success){
+        navigate(location?.state ? location?.state: '/')
+    }
+  })
+                
             })
-            .catch((error) => {
-                console.error(error);
-                toast.error("Invalid Email or Password!!!");
-            })
+            .catch(error => {
+                console.error('Error:', error);
+              });
     }
 
     return (
