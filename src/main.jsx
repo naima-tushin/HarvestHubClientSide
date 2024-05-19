@@ -45,7 +45,9 @@ const router = createBrowserRouter([
         element: <ProtectedRoute>
           <ManageMyFoods></ManageMyFoods>
           </ProtectedRoute>,
-        loader: ({ params }) => fetch(`https://harvest-hub-server-nine.vercel.app/myFood/${params.userEmail}`)
+        loader: ({ params }) => fetch(`https://harvest-hub-server-nine.vercel.app/myFood/${params.userEmail}`, {
+          credentials: 'include'
+        }),
 
       },
       {
@@ -73,7 +75,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute>
           <FoodDetails></FoodDetails>
         </ProtectedRoute>,
-        loader: ({ params }) => fetch(`https://harvest-hub-server-nine.vercel.app/foodDetails/${params.id}`),
+        loader: ({ params }) => fetch(`https://harvest-hub-server-nine.vercel.app/foodDetails/${params.id}`, { credentials: 'include' }),
       }, 
       {
         path: '/updateFood/:id',

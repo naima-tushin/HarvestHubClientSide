@@ -20,7 +20,6 @@ const FoodCard = ({ foods }) => {
         const formattedHours = hours % 12 || 12;
         return `${formattedHours}:${minutes} ${ampm}`;
     };
-    console.log(foods.donatorImage);
 
 const  placeHolderImage = "https://i.ibb.co/BV0NHW2/pics.jpg" ;
     return (
@@ -28,7 +27,7 @@ const  placeHolderImage = "https://i.ibb.co/BV0NHW2/pics.jpg" ;
         <div className="container mx-auto bg-accent bg-opacity-55 p-4 rounded-lg mt-10 shadow-lg shadow-black">
             <ul className="divide-y divide-gray-200">
                 {foods.map(food => (
-                    <li key={food.id} className="py-4">
+                    <li key={food._id} className="py-4">
                         <div className="flex items-center justify-evenly">
                             <div>
                                 <img src={food.foodImage} alt={food.foodName} className="w-14 h-14 md:w-24 md:h-24 lg:w-24 lg:h-24 rounded-full mr-4" />

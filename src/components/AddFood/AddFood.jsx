@@ -6,6 +6,7 @@ import logo from '../../assets/images/logo1.png';
 import Swal from "sweetalert2";
 
 const AddFood = () => {
+    
     const { user } = useAuth();
 
     const [formData, setFormData] = useState({

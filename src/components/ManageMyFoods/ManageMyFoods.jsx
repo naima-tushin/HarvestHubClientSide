@@ -79,7 +79,7 @@ const ManageMyFoods = () => {
               </thead>
               <tbody>
                 {allLoadedFood && allLoadedFood.map(food => (
-                  <tr key={food.id}>
+                  <tr key={food._id}>
                     <td className="border-2 border-primary px-4 py-2">{food.foodName}</td>
                     <td className="border-2 border-primary px-4 py-2">{food.foodQuantity}</td>
                     <td className="border-2 border-primary px-4 py-2">{food.pickupLocation}</td>
@@ -98,7 +98,7 @@ const ManageMyFoods = () => {
           </div>
           <div className="grid grid-cols-1 lg:hidden md:grid-cols-2 lg:grid-cols-3 gap-4 p-2 mb-8">
             {allLoadedFood && allLoadedFood.map(food => (
-              <div key={food.id} className="bg-secondary shadow-md rounded p-4">
+              <div key={food._id} className="bg-secondary shadow-md rounded p-4">
                 <div className="font-bold text-xl mb-2">{food.foodName}</div>
                 <p><span className="font-bold">Quantity:</span> {food.foodQuantity}</p>
                 <p><span className="font-bold">Pickup Location:</span> {food.pickupLocation}</p>

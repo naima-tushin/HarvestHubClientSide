@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, GithubAuthProvider, signOut, updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
+import axios from "axios";
 
 
 export const AuthContext = createContext(null)
@@ -23,7 +24,7 @@ const AuthProvider = ({ children }) => {
     //update user profile
     const updateUserProfile = (fullname, imageURL) => {
         return updateProfile(auth.currentUser, {
-            displayName: fullname, 
+            displayName: fullname,
             photoURL: imageURL
         })
     }
@@ -54,14 +55,45 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if(user) {
-                setUser(user)
-            }
-            setLoading(false)
-        })
-        return () => unsubscribe();
-    }, [])
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+
+
+        setLoading(false); 
+        setUser(user);
+        
+        console.log('Current User', user);
+        if (user) {
+            const userEmail = user?.email || user.email;
+            const loggedUser = { email: userEmail };
+            axios.post('http://localhost:5000/jwt', loggedUser, {
+                withCredentials: true
+            })
+            .then(res => {
+                console.log('token response', res.data);
+                setLoading(false); 
+            })
+            .catch(err => {
+                console.error('Token creation error:', err);
+                setLoading(false); 
+            });
+        } else {
+            axios.post('http://localhost:5000/logout', loggedUser, {
+                withCredentials: true
+            })
+            .then(res => {
+                console.log(res.data);
+                setLoading(false); 
+            })
+            .catch(err => {
+                console.error('Logout error:', err);
+                setLoading(false); 
+            });
+        }
+    });
+
+    return () => unsubscribe();
+}, []);
+
 
 
     const allValues = {

@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../assets/images/logo1.png';
-import placeHolderImage from '../../assets/images/placeHolder.jpg';
+// import placeHolderImage from '../../assets/images/placeHolder.jpg';
 import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
@@ -51,7 +51,7 @@ const Navbar = () => {
                                 <div className="w-10 rounded-full">
                                     <img
                                         alt=""
-                                        src={user?.photoURL || placeHolderImage}
+                                        src={user?.photoURL || "https://i.ibb.co/BV0NHW2/pics.jpg"}
                                         title={user?.displayName || 'Not found'}
                                     />
                                 </div>
