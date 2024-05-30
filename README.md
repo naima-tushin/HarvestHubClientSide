@@ -1,6 +1,6 @@
 Name of Website: Harvest Hub (Assignment_ID: assignment_category_0007)
 
-Vercel Live Site URL: https://harvest-hub-server-nine.vercel.app
+Vercel Live Site URL: http://localhost:5000
 
 Firebase Hosting URL: https://harvest-hub-client.web.app
 

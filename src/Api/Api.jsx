@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const BASE_URL = 'https://harvest-hub-server-nine.vercel.app/';
+const BASE_URL = 'http://localhost:5000/';
 
 const api = createApi({
   reducerPath: 'api',

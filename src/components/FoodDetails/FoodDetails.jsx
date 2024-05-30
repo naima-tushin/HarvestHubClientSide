@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import backgroundImg from '../../assets/images/bgDetails.jpg';
+import Swal from 'sweetalert2';
+import Reviews from '../ReviewSection/ReviewSection'; 
 
 const FoodDetails = () => {
     const { user } = useAuth();
@@ -10,6 +12,10 @@ const FoodDetails = () => {
     const [showModal, setShowModal] = useState(false);
     const [additionalNotes, setAdditionalNotes] = useState('');
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showReviewModal, setShowReviewModal] = useState(false);
+    const [reviewText, setReviewText] = useState('');
+    const [rating, setRating] = useState(0);
+    const [reviewCount, setReviewCount] = useState(0); 
 
     const formatDateTime = (dateString) => {
         const date = new Date(dateString);
@@ -27,8 +33,13 @@ const FoodDetails = () => {
         setShowModal(true);
     };
 
+    const handleReviewClick = () => {
+        setShowReviewModal(true);
+    };
+
     const handleCloseModal = () => {
         setShowModal(false);
+        setShowReviewModal(false);
     };
 
     const handleRequestFood = async () => {
@@ -83,6 +94,58 @@ const FoodDetails = () => {
         setAdditionalNotes(event.target.value);
     };
 
+    const handleReviewSubmit = async () => {
+        try {
+           if(reviewText === ''){
+            Swal.fire({
+                title: `Add a Review`,
+                text: "Review cannot be empty",
+                icon: "error"
+            });
+           } else if(rating === 0){
+            Swal.fire({
+                title: `Add a Rating`,
+                text: "Rating cannot be 0",
+                icon: "error"
+            });
+           } else {
+                const response = await fetch('http://localhost:5000/addReview', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        foodId: foodDetails._id,
+                        reviewText: reviewText,
+                        rating: rating,
+                        userEmail: user?.email,
+                        userName: user?.displayName,
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                setShowReviewModal(false);
+                Swal.fire({
+                    title: `Review Added`,
+                    text: "Thank you for your feedback",
+                    icon: "success"
+                });
+                setReviewText('');
+                setRating(0);
+                setReviewCount(reviewCount + 1); 
+                window.location.reload();
+            }
+        } catch (error) {
+            console.error('There was a problem with the request:', error);
+        }
+    };
+
+    const handleRatingChange = (newRating) => {
+        setRating(newRating);
+    };
 
     return (
         <div className="container mx-auto px-2 lg:px-5">
@@ -110,6 +173,7 @@ const FoodDetails = () => {
                     {foodDetails.foodStatus === 'Available' &&
                         <button className="bg-black text-accent border-accent border-4 hover:border-black hover:bg-accent hover:text-white px-4 py-2 rounded-md mx-auto flex mt-4 lg:mt-8" onClick={handleRequestClick}>Request Food</button>
                     }
+                    <button className="bg-black text-accent border-accent border-4 hover:border-black hover:bg-accent hover:text-white px-4 py-2 rounded-md mx-auto flex mt-4 lg:mt-8" onClick={handleReviewClick}>Add Review</button>
                 </div>
             </div>
             {showModal && (
@@ -143,6 +207,31 @@ const FoodDetails = () => {
                 </div>
             )}
 
+            {/* Review Modal */}
+            {showReviewModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div className="bg-white p-8 rounded-lg mb-5 lg:mb-0">
+                        <h2 className="text-lg lg:text-2xl font-bold lg:mb-4 md:mb-2 text-center text-primary">Add Review</h2>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-bold mb-2">Your Review:</label>
+                            <textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} className="w-full px-3 py-2 border rounded-md" />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-bold mb-2">Rating:</label>
+                            <div className="flex">
+                                {[1, 2, 3, 4, 5].map((star) => (
+                                    <button key={star} className={`text-xl ${star <= rating ? 'text-yellow-500' : 'text-gray-400'}`} onClick={() => handleRatingChange(star)}>★</button>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex justify-between">
+                            <button className="bg-accent text-black border-2 border-black hover:bg-black hover:text-accent hover:accent px-4 py-2 rounded-md" onClick={handleCloseModal}>Cancel</button>
+                            <button className="bg-black text-accent border-2 border-accent hover:bg-accent hover:text-black hover:border-black px-4 py-2 rounded-md" onClick={handleReviewSubmit}>Submit Review</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Success modal */}
             {showSuccessModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -153,6 +242,8 @@ const FoodDetails = () => {
                     </div>
                 </div>
             )}
+
+<Reviews foodId={foodDetails._id} onReviewAdded={() => setReviewCount(reviewCount + 1)} />
         </div>
     );
 };
