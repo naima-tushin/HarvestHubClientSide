@@ -32,7 +32,7 @@ const AddFood = () => {
 
         if (formData.foodName !== '' && formData.foodImage !== '' && formData.foodQuantity !== '' && formData.pickupLocation !== '' && formData.expiredDateTime !== '') {
             console.log(formData);
-            fetch('http://localhost:5000/addFood', {
+            fetch('https://harvest-hub-server-nine.vercel.app/addFood', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

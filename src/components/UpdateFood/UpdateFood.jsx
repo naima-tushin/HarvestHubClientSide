@@ -25,7 +25,7 @@ const UpdateFood = () => {
         const updateFood = {foodName, foodImage, foodStatus, foodQuantity, expiredDateTime, pickupLocation};
         
         console.log(updateFood);
-        fetch(`http://localhost:5000/foodUpdate/${_id}`, {
+        fetch(`https://harvest-hub-server-nine.vercel.app/foodUpdate/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

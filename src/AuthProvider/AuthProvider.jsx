@@ -65,7 +65,7 @@ const AuthProvider = ({ children }) => {
         if (user) {
             const userEmail = user?.email || user.email;
             const loggedUser = { email: userEmail };
-            axios.post('http://localhost:5000/jwt', loggedUser, {
+            axios.post('https://harvest-hub-server-nine.vercel.app/jwt', loggedUser, {
                 withCredentials: true
             })
             .then(res => {
@@ -77,7 +77,7 @@ const AuthProvider = ({ children }) => {
                 setLoading(false); 
             });
         } else {
-            axios.post('http://localhost:5000/logout', loggedUser, {
+            axios.post('https://harvest-hub-server-nine.vercel.app/logout', loggedUser, {
                 withCredentials: true
             })
             .then(res => {

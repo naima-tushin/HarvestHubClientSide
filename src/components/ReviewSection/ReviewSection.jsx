@@ -21,7 +21,7 @@ const Reviews = ({ foodId, onReviewAdded }) => {
 
     const fetchReviews = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/fetchReviews/${foodId}`);
+            const response = await fetch(`https://harvest-hub-server-nine.vercel.app/fetchReviews/${foodId}`);
             const data = await response.json();
             setReviews(data);
         } catch (error) {

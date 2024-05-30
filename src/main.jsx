@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/allFood'),
+        loader: () => fetch('https://harvest-hub-server-nine.vercel.app/allFood'),
       },
       {
         path: '/login',
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute>
           <ManageMyFoods></ManageMyFoods>
           </ProtectedRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/myFood/${params.userEmail}`, {
+        loader: ({ params }) => fetch(`https://harvest-hub-server-nine.vercel.app/myFood/${params.userEmail}`, {
           credentials: 'include'
         }),
 
@@ -61,28 +61,28 @@ const router = createBrowserRouter([
         path: '/availableFood',
         element:
             <AvailableFood></AvailableFood>,
-            loader: () => fetch('http://localhost:5000/allFood')
+            loader: () => fetch('https://harvest-hub-server-nine.vercel.app/allFood')
       },
       {
         path: '/myFoodRequest/:userEmail',
         element: <ProtectedRoute>
           <MyFoodRequest></MyFoodRequest>
         </ProtectedRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/myRequestFood/${params.userEmail}`)
+        loader: ({ params }) => fetch(`https://harvest-hub-server-nine.vercel.app/myRequestFood/${params.userEmail}`)
       },
       {
         path: '/foodDetails/:id',
         element: <ProtectedRoute>
           <FoodDetails></FoodDetails>
         </ProtectedRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/foodDetails/${params.id}`, { credentials: 'include' }),
+        loader: ({ params }) => fetch(`https://harvest-hub-server-nine.vercel.app/foodDetails/${params.id}`, { credentials: 'include' }),
       }, 
       {
         path: '/updateFood/:id',
         element: <ProtectedRoute>
           <UpdateFood></UpdateFood>
         </ProtectedRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/foodDetails/${params.id}`),
+        loader: ({ params }) => fetch(`https://harvest-hub-server-nine.vercel.app/foodDetails/${params.id}`),
       }, 
     ]
   },

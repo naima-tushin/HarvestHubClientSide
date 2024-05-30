@@ -4,7 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import backgroundImg from '../../assets/images/bgDetails.jpg';
 import Swal from 'sweetalert2';
-import Reviews from '../ReviewSection/ReviewSection'; 
+import Reviews from '../ReviewSection/ReviewSection';
 
 const FoodDetails = () => {
     const { user } = useAuth();
@@ -15,7 +15,7 @@ const FoodDetails = () => {
     const [showReviewModal, setShowReviewModal] = useState(false);
     const [reviewText, setReviewText] = useState('');
     const [rating, setRating] = useState(0);
-    const [reviewCount, setReviewCount] = useState(0); 
+    const [reviewCount, setReviewCount] = useState(0);
 
     const formatDateTime = (dateString) => {
         const date = new Date(dateString);
@@ -96,20 +96,20 @@ const FoodDetails = () => {
 
     const handleReviewSubmit = async () => {
         try {
-           if(reviewText === ''){
-            Swal.fire({
-                title: `Add a Review`,
-                text: "Review cannot be empty",
-                icon: "error"
-            });
-           } else if(rating === 0){
-            Swal.fire({
-                title: `Add a Rating`,
-                text: "Rating cannot be 0",
-                icon: "error"
-            });
-           } else {
-                const response = await fetch('http://localhost:5000/addReview', {
+            if (reviewText === '') {
+                Swal.fire({
+                    title: `Add a Review`,
+                    text: "Review cannot be empty",
+                    icon: "error"
+                });
+            } else if (rating === 0) {
+                Swal.fire({
+                    title: `Add a Rating`,
+                    text: "Rating cannot be 0",
+                    icon: "error"
+                });
+            } else {
+                const response = await fetch('https://harvest-hub-server-nine.vercel.app/addReview', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -135,7 +135,7 @@ const FoodDetails = () => {
                 });
                 setReviewText('');
                 setRating(0);
-                setReviewCount(reviewCount + 1); 
+                setReviewCount(reviewCount + 1);
                 window.location.reload();
             }
         } catch (error) {
@@ -243,7 +243,7 @@ const FoodDetails = () => {
                 </div>
             )}
 
-<Reviews foodId={foodDetails._id} onReviewAdded={() => setReviewCount(reviewCount + 1)} />
+            <Reviews foodId={foodDetails._id} onReviewAdded={() => setReviewCount(reviewCount + 1)} />
         </div>
     );
 };
