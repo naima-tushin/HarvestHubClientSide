@@ -1,4 +1,4 @@
-Name of Website: Harvest Hub (Assignment_ID: assignment_category_0007)
+Name of Website: Harvest Hub
 
 Vercel Live Site URL: https://harvest-hub-server-nine.vercel.app
 
